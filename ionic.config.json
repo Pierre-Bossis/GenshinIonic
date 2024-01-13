@@ -1,0 +1,7 @@
+{
+  "name": "GenshinIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
