@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>armes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <div class="row">
+  <div class="col-md-12 text-center">
+    <div class="d-flex align-items-center justify-content-center">
+      <span (click)="filter('all')" style="font-size: 70px;">★</span>&nbsp;&nbsp;&nbsp;
+      <img src="../../../../assets/sword.webp" width="70" height="70" (click)="filter('Epée')">&nbsp;&nbsp;&nbsp;
+      <img src="../../../../assets/2hsword.webp" width="70" height="70" (click)="filter('Claymore')">&nbsp;&nbsp;&nbsp;
+      <img src="../../../../assets/spear.webp" width="70" height="70" (click)="filter('Lance')">&nbsp;&nbsp;&nbsp;
+      <img src="../../../../assets/bow.webp" width="70" height="70" (click)="filter('Arc')">&nbsp;&nbsp;&nbsp;
+      <img src="../../../../assets/catalyseur.webp" width="70" height="70" (click)="filter('Catalyseur')">&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+</div> -->
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1 class="ion-text-center">Armes</h1>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [scrollable]="true" value="All" class="weaponsIcons">
+    <ion-segment-button value="All">
+      <span style="font-size: 38px;margin-bottom: 5px;">★</span>
+    </ion-segment-button>
+    <ion-segment-button value="Epée">
+      <ion-img src="../../../assets/sword.webp"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Claymore">
+      <ion-img src="../../../assets/2hsword.webp"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Lance">
+      <ion-img src="../../../assets/spear.webp"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Arc">
+      <ion-img src="../../../assets/bow.webp"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Catalyseur">
+      <ion-img src="../../../assets/catalyseur.webp"></ion-img>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-text class="ion-text-center" *ngIf="!armes || armes.length <= 0">
+    <p>Probleme lors du chargement...</p>
+  </ion-text>
+  <ion-grid *ngIf="armes" class="ion-text-center">
+    <ion-row class="ion-align-items-center ion-justify-content-center ion-align-items-stretch">
+      <ion-col size-xs="6" size-md="3" size-xl="2" *ngFor="let arme of armesFiltered">
+        <ion-card class="custom-card" button>
+          <ion-img class="image-container" [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
+          <ion-card-content>
+            <p class="ion-text-center" style="margin-bottom: 10px;">{{ arme.nom }}</p>
+            <p><span class="rarete star ion-text-center">{{ arme.rarete | star }}</span></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

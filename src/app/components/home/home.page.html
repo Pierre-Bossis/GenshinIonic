@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size-md="2" size-lg="1" class="ion-text-right">
+        <ion-img src="../../assets/primogem.webp"></ion-img>
+      </ion-col>
+  
+      <ion-col size-md="4" size-xs="6" size-lg="3" class="ion-align-self-center">
+        <ion-img src="../../assets/gi.png"></ion-img>
+      </ion-col>
+  
+      <ion-col size-md="2" size-lg="1" class="ion-text-left">
+        <ion-img src="../../assets/primogem.webp"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <p class="ion-text-center">Version du jeu actuelle : 4.3</p>
+    <ion-row>
+      <ion-col size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-img src="../../assets/4-3.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <p class="ion-text-center" style="margin-bottom: -6px;">Bannières actuelle</p>
+      <swiper-container [loop]="true" [pagination]="true" [spaceBetween]="20">
+        <swiper-slide><ion-img src="../../assets/Banniere-4.2-1.jpeg"></ion-img></swiper-slide>
+        <swiper-slide><ion-img src="../../assets/Banniere-4.3-2.jpeg"></ion-img></swiper-slide>
+        <swiper-slide><ion-img src="../../assets/Banniere-4.3-3.jpeg"></ion-img></swiper-slide>
+      </swiper-container>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

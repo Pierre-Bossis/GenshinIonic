@@ -1,0 +1,22 @@
+.arrow-icon {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .rotate-up {
+    transform: rotate(180deg);
+  }
+  
+  .rotate-down {
+    transform: rotate(0deg);
+  }
+
+  .resource-options {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+  }
+  
+  .resource-options.active {
+    max-height:500px; /* ou la hauteur souhaitée */
+    transition: max-height 0.5s ease-out;
+  }

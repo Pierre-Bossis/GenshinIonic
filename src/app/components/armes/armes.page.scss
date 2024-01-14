@@ -1,0 +1,44 @@
+
+  
+
+  ion-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custom-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  ion-card{
+    min-height: 40vh;
+    min-width: 18vh;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 300px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+  
+  .rarete {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .weaponsIcons ion-segment-button ion-img {
+    max-width: 50px;
+    max-height: 50px;
+  }
