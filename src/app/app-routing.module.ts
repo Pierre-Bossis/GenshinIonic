@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'produits',
     loadChildren: () => import('./components/produits/produits.module').then( m => m.ProduitsPageModule)
   },
+  {
+    path: 'materiaux-elevation-armes',
+    loadChildren: () => import('./components/materiaux/materiaux-elevation-armes/materiaux-elevation-armes.module').then( m => m.MateriauxElevationArmesPageModule)
+  },
 ];
 
 @NgModule({

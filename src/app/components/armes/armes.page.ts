@@ -16,7 +16,7 @@ armesFiltered:Armes[] = []
   ngOnInit() {
     this.armesService.getAll().subscribe((data) => {
       this.armes = data
-      this.armesFiltered = this.armes
+      this.armesFiltered = this.armes      
     })
   }
 

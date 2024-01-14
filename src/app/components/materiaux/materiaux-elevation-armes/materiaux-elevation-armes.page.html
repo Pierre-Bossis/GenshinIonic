@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Materiaux Elevation Armes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+<ion-list class="ion-align-self-center">
+  <ion-item (click)="openModal(materiau)" button *ngFor="let materiau of materiaux" class="custom-item" detail>
+    <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+    <p>{{materiau.nom}}</p>
+  </ion-item>
+</ion-list>
+</ion-content>

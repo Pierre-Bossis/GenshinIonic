@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 <ion-list>
-  <ion-item (click)="openModal(produit)" button *ngFor="let produit of produits" class="custom-item">
+  <ion-item (click)="openModal(produit)" button *ngFor="let produit of produits" class="custom-item" detail>
     <ion-img [src]="'data:image/jpeg;base64,' + produit.icone"></ion-img>
     <p>{{produit.nom}}</p>
   </ion-item>
