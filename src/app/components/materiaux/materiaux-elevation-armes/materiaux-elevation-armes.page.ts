@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { MateriauxElevationArmes } from 'src/app/_models/materiaux-elevation-armes';
 import { MateriauxElevationArmesService } from 'src/app/_services/materiaux-elevation-armes.service';
 import { MateriauxElevationArmesModalDetailComponent } from './materiaux-elevation-armes-modal-detail/materiaux-elevation-armes-modal-detail.component';
@@ -10,19 +10,28 @@ import { MateriauxElevationArmesModalDetailComponent } from './materiaux-elevati
   styleUrls: ['./materiaux-elevation-armes.page.scss'],
 })
 export class MateriauxElevationArmesPage implements OnInit {
-materiaux:MateriauxElevationArmes[] = []
-  constructor(private matsElevationArmesService:MateriauxElevationArmesService, private modalCtrl:ModalController) { }
+  materiaux: MateriauxElevationArmes[] = []
+  spinner: boolean = true
+  constructor(private matsElevationArmesService: MateriauxElevationArmesService, private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    this.matsElevationArmesService.getAll().subscribe((data) => this.materiaux = data)
+    this.loadingData()
   }
 
-  openModal(materiau:MateriauxElevationArmes){
+  openModal(materiau: MateriauxElevationArmes) {
     this.modalCtrl.create({
       component: MateriauxElevationArmesModalDetailComponent,
       componentProps: { materiau: materiau }
     }).then(modalEl => {
-       modalEl.present()
+      modalEl.present()
     })
+  }
+
+  private loadingData() {
+    this.matsElevationArmesService.getAll().subscribe((data) => {
+      this.materiaux = data
+      this.spinner = false
+    });
   }
 }

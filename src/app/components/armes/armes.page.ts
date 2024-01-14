@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SegmentCustomEvent } from '@ionic/angular';
+import { LoadingController, SegmentCustomEvent } from '@ionic/angular';
 import { Armes } from 'src/app/_models/arme'; 
 import { ArmesService } from 'src/app/_services/armes.service';
 
@@ -11,13 +11,10 @@ import { ArmesService } from 'src/app/_services/armes.service';
 export class ArmesPage implements OnInit {
 armes:Armes[] = []
 armesFiltered:Armes[] = []
-  constructor(private armesService:ArmesService) { }
+  constructor(private armesService:ArmesService, private loadingCtrl:LoadingController) { }
 
   ngOnInit() {
-    this.armesService.getAll().subscribe((data) => {
-      this.armes = data
-      this.armesFiltered = this.armes      
-    })
+    this.loadingData()
   }
 
   segmentChanged(typeArme:SegmentCustomEvent){
@@ -25,5 +22,18 @@ armesFiltered:Armes[] = []
     this.armesFiltered = this.armes
   else
     this.armesFiltered = this.armes.filter(arme => arme.typeArme == typeArme.detail.value)
+  }
+
+  private loadingData() {
+    const loading =  this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    }).then(loadlingEl => {
+      loadlingEl.present()
+      this.armesService.getAll().subscribe((data) => {
+        this.armes = data
+        this.armesFiltered = this.armes
+        loadlingEl.dismiss()
+      });
+    })
   }
 }

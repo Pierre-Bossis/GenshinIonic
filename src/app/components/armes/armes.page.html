@@ -44,9 +44,6 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-text class="ion-text-center" *ngIf="!armes || armes.length <= 0">
-    <p>Probleme lors du chargement...</p>
-  </ion-text>
   <ion-grid *ngIf="armes" class="ion-text-center">
     <ion-row class="ion-align-items-center ion-justify-content-center ion-align-items-stretch">
       <ion-col size-xs="6" size-md="3" size-xl="2" *ngFor="let arme of armesFiltered">

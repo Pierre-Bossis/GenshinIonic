@@ -28,3 +28,16 @@
 .star{
     color:rgba(240, 217, 8, 0.74);
 }
+
+.loader{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-spinner {
+    width: 80px;
+    height: 80px;
+  }

@@ -8,8 +8,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-<ion-list>
-  <ion-item (click)="openModal(produit)" button *ngFor="let produit of produits" class="custom-item" detail>
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+<ion-list class="ion-align-self-center custom-list">
+  <ion-item (click)="openModal(produit)" button *ngFor="let produit of produits" detail>
     <ion-img [src]="'data:image/jpeg;base64,' + produit.icone"></ion-img>
     <p>{{produit.nom}}</p>
   </ion-item>
