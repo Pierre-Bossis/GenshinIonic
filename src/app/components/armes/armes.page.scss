@@ -1,5 +1,4 @@
 
-  
 
   ion-col {
     display: flex;
@@ -39,6 +38,8 @@
   }
   
   .weaponsIcons ion-segment-button ion-img {
+    min-width: 40px;
+    min-height: 40px;
     max-width: 50px;
     max-height: 50px;
   }

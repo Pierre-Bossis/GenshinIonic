@@ -17,8 +17,7 @@ export class AppComponent {
   }
 
   selectOption(option: string) {
-    this.menuCtrl.close()    
-    //naviguate
+    this.menuCtrl.close()
   }
 }
 

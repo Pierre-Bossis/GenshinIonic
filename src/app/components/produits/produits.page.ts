@@ -34,6 +34,5 @@ export class ProduitsPage implements OnInit {
       this.produits = data
       this.spinner = false
     });
-
   }
 }

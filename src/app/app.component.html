@@ -36,32 +36,32 @@
   
         <ion-list class="resource-options" [ngClass]="{'active': showResourceOptions}">
           <ion-item routerLink="materiaux-elevation-armes" (click)="selectOption('Option 1')">
-            <ion-label>Materiaux elevation armes</ion-label>
+            <ion-label color="light">Materiaux elevation armes</ion-label>
             <ion-icon name="leaf-outline" slot="start"></ion-icon>
           </ion-item>
 
           <ion-item routerLink="produits" (click)="selectOption('Option 2')">
-            <ion-label>Produits</ion-label>
+            <ion-label color="light">Produits</ion-label>
             <ion-icon name="git-commit-outline" slot="start"></ion-icon>
           </ion-item>
 
-          <ion-item routerLink="" (click)="selectOption('Option 3')">
-            <ion-label>Matériaux d'amélioration(personnages)</ion-label>
+          <ion-item routerLink="materiaux-amelioration-personnages" (click)="selectOption('Option 3')">
+            <ion-label color="light">Matériaux d'amélioration(personnages)</ion-label>
             <ion-icon name="filter-outline" slot="start"></ion-icon>
           </ion-item>
 
-          <ion-item routerLink="" (click)="selectOption('Option 4')">
-            <ion-label>Matériaux d'elevation(personnages)</ion-label>
+          <ion-item routerLink="materiaux-elevation-personnages" (click)="selectOption('Option 4')">
+            <ion-label color="light">Matériaux d'elevation(personnages)</ion-label>
             <ion-icon name="file-tray-full-outline" slot="start"></ion-icon>
           </ion-item>
 
-          <ion-item routerLink="" (click)="selectOption('Option 5')">
-            <ion-label>Livres d'aptitude</ion-label>
+          <ion-item routerLink="livres-aptitude" (click)="selectOption('Option 5')">
+            <ion-label color="light">Livres d'aptitude</ion-label>
             <ion-icon name="cube-outline" slot="start"></ion-icon>
           </ion-item>
 
-          <ion-item routerLink="" (click)="selectOption('Option 6')">
-             <ion-label>Materiaux d'amelioration(perso/armes)</ion-label>
+          <ion-item routerLink="materiaux-amelioration-personnages-et-armes" (click)="selectOption('Option 6')">
+             <ion-label color="light">Materiaux d'amelioration(perso/armes)</ion-label>
              <ion-icon name="egg-outline" slot="start"></ion-icon>
           </ion-item>
         </ion-list>

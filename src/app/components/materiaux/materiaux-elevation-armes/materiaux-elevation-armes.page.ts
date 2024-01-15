@@ -12,8 +12,7 @@ import { MateriauxElevationArmesModalDetailComponent } from './materiaux-elevati
 export class MateriauxElevationArmesPage implements OnInit {
   materiaux: MateriauxElevationArmes[] = []
   spinner: boolean = true
-  constructor(private matsElevationArmesService: MateriauxElevationArmesService, private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController) { }
+  constructor(private matsElevationArmesService: MateriauxElevationArmesService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.loadingData()

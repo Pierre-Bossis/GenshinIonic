@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{materiau.nom}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <ion-grid>
+    <ion-row class="mt">
+      <ion-col class="ion-align-items-center">
+        <ion-img class="custom-img" [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row class="mt">
+      <ion-col>
+        <p>Rareté : <span class="star" style="font-size: 30px;">{{materiau.rarete | star}}</span></p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="mt">
+      <ion-col>
+        <p>Source : {{materiau.source}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-button class="ion-text-center mt" fill="outline" expand="block" (click)="onCancel()">Retour</ion-button>
+  </ion-grid>
+</ion-content>
