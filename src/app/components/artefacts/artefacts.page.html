@@ -4,13 +4,25 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>artefacts</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">artefacts</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+
+  <ion-list>
+    <ion-item (click)="openModal(artefact.nomSet)" detail button *ngFor="let artefact of artefacts">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="'data:image/jpeg;base64,' + artefact.imagePath"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{ artefact.nomSet }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -16,10 +16,12 @@
   <div *ngIf="spinner" class="loader">
     <ion-spinner name="dots" color="primary"></ion-spinner>
   </div>
-<ion-list class="ion-align-self-center custom-list">
-  <ion-item (click)="openModal(livre)" button *ngFor="let livre of livres" detail>
-    <ion-img [src]="'data:image/jpeg;base64,' + livre.icone"></ion-img>
-    <p>{{livre.nom}}</p>
-  </ion-item>
-</ion-list>
+  <ion-list class="ion-align-self-center custom-list">
+    <ion-item (click)="openModal(livre)" *ngFor="let livre of livres" class="custom-item" button detail>
+      <ion-img [src]="'data:image/jpeg;base64,' + livre.icone"></ion-img>
+      <ion-label>
+        <ion-text>{{livre.nom}}</ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

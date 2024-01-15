@@ -20,9 +20,12 @@
 
 <ion-list class="ion-align-self-center custom-list">
   <ion-item (click)="openModal(materiau)" *ngFor="let materiau of materiaux" class="custom-item" button detail>
-    <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+
+      <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+
     <ion-label>
       <ion-text>{{materiau.nom}}</ion-text>
     </ion-label>
   </ion-item>
 </ion-list>
+</ion-content>

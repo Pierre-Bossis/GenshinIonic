@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ArtefactsPageRoutingModule } from './artefacts-routing.module';
 
 import { ArtefactsPage } from './artefacts.page';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     ArtefactsPageRoutingModule
   ],
   declarations: [ArtefactsPage]

@@ -18,9 +18,10 @@
     color: var(--ion-color-warning);
   }
   
-  .ion-table tr:nth-child(odd) {
+  .ion-table tr td:first-child {
     background-color: var(--ion-color-dark-shade);
-  }
+    
+}
 
   /* Fin table */
 

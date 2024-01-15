@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{nomSet}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+  <ng-container *ngIf="artefacts.length > 0">
+    <div class="ion-text-center">
+      <h4 class="border-bottom">Bonus 2 pièces</h4>
+      <ion-text color="light">{{artefacts[0].bonus2Pieces}}</ion-text>
+    </div>
+    <div class="ion-text-center">
+      <h4 class="border-bottom">Bonus 4 pièces</h4>
+      <ion-text color="light">{{artefacts[0].bonus4Pieces}}</ion-text>
+    </div>
+    <hr>
+  </ng-container>
+  
+  <ion-item color="dark" lines="none" *ngFor="let artefact of artefacts" class="ion-text-center">
+    <ion-text style="vertical-align: middle;">{{artefact.nom}}</ion-text>
+    <ion-thumbnail slot="start">
+      <img [src]="'data:image/jpeg;base64,' + artefact.imagePath" alt="">
+    </ion-thumbnail>
+  </ion-item>
+
+  <ion-button class="ion-text-center mt" fill="outline" expand="block" (click)="onCancel()">Retour</ion-button>
+</ion-content>

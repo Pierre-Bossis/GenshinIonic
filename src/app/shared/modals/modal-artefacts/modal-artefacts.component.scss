@@ -1,0 +1,23 @@
+.custom-img {
+    max-width: 80%;
+    max-height: 80%;
+    margin: auto;
+  }
+  
+  ion-col.ion-align-items-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  ion-item{
+    margin-bottom: 10px;
+  }
+
+  .mt{
+    margin-top: 30px;
+  }
+
+  ion-title{
+    font-size: 17px;
+  }

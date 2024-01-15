@@ -77,11 +77,7 @@ trailer!: SafeResourceUrl;
 
   segmentChanged(e:SegmentCustomEvent){
     if(e.detail.value != undefined){
-      if(e.detail.value == 'detail')
-        this.selectedSegment = 'detail'
-      else{
         this.selectedSegment = e.detail.value.toString()
-      }
     }
   }
 
