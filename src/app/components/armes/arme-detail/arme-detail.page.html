@@ -1,0 +1,121 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="armes"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="arme">{{arme.nom}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" *ngIf="arme">
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+
+  <ion-grid class="ion-text-center" *ngIf="arme">
+
+    <ion-segment (ionChange)="segmentChanged($event)" [scrollable]="true" value="detail" class="persosIcons">
+      <ion-segment-button value="detail">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="materiauxElevation">
+        <ion-icon name="file-tray-full-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="materiauxAmelioration">
+        <ion-icon name="egg-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-row class="ion-justify-content-center" style="margin-top: 50px;">
+
+      <ion-col size-xs="5" size-sm="4" size-md="2" size-lg="2" size-xl="1" *ngIf="arme.typeArme !== 'Arc' && arme.typeArme !== 'Lance' && arme.typeArme !== 'Catalyseur'">
+        <ion-img [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
+      </ion-col>
+
+      <ion-col size-xs="4" size-sm="4" size-md="2" size-lg="2" size-xl="1" *ngIf="arme.typeArme === 'Lance'">
+        <ion-img [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
+      </ion-col>
+    
+      <ion-col size-xs="7" size-sm="5" size-md="3" size-lg="3" size-xl="2" *ngIf="arme.typeArme === 'Arc'">
+        <ion-img [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
+      </ion-col>
+    
+      <ion-col size-xs="9" size-sm="6" size-md="4" size-lg="4" size-xl="2" *ngIf="arme.typeArme === 'Catalyseur'">
+        <ion-img [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <!-- details -->
+  <ion-grid class="ion-table ion-text-center fade-in" *ngIf="selectedSegment === 'detail'">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="8" size-lg="8" size-xl="5">
+        <table>
+          <tr>
+            <td class="bg-dark">Rareté</td>
+            <td><span class="star">{{arme.rarete | star }}</span></td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Catégorie d'arme</td>
+            <td>{{arme.typeArme}}</td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Description</td>
+            <td>{{arme.description}}</td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Attaque de base</td>
+            <td>{{arme.atqBase}}</td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Stat Principale</td>
+            <td>{{arme.nomStatPrincipale}}</td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Valeur</td>
+            <td>{{arme.valeurStatPrincipale}}</td>
+        </tr>
+        <tr>
+            <td class="bg-dark">Effet passif</td>
+            <td>{{arme.effetPassif}}</td>
+        </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!-- materiaux elevation -->
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxElevation'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <h4>Materiaux d'elevation</h4>
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item color="dark" (click)="openModal(materiau)" *ngFor="let materiau of matsElevation" class="custom-item" button detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+          <ion-label>
+            <ion-text>{{materiau.nom}}</ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- materiaux amelioration -->
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxAmelioration'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <h4>Materiaux d'amélioration</h4>
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item color="dark" (click)="openModal(materiau)" *ngFor="let materiau of matsAmelioration" class="custom-item" button detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+          <ion-label>
+            <ion-text>{{materiau.nom}}</ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ArmesPage
+  },
+  {
+    path: 'detail/:nom',
+    loadChildren: () => import('./arme-detail/arme-detail.module').then( m => m.ArmeDetailPageModule)
   }
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, SegmentCustomEvent } from '@ionic/angular';
 import { Aptitudes } from 'src/app/_models/aptitudes';
 import { Armes } from 'src/app/_models/arme';
@@ -27,7 +27,7 @@ export class PersonnageDetailPage implements OnInit {
 
   constructor(private personnagesService:PersonnagesService,private activatedRoute:ActivatedRoute,private produitsService:ProduitsService,
     private armesService:ArmesService,private materiauxAmeliorationPersonnagesService:MateriauxAmeliorationPersonnagesService,
-    private sanitizer: DomSanitizer,private modalCtrl:ModalController) { }
+    private router:Router,private modalCtrl:ModalController) { }
 personnage!:Personnages
 spinner: boolean = true
 personnageName: string | null = null
@@ -67,7 +67,7 @@ trailer!: SafeResourceUrl;
         this.produitsService.getById(data.personnage.produit_Id).subscribe((dataProduit) => this.produit = dataProduit)
         this.materiauxAmeliorationPersonnagesService.getById(data.personnage.materiauxAmeliorationPersonnage_Id).subscribe((dataMat) => this.mat = dataMat)
 
-        this.trailer = this.sanitizer.bypassSecurityTrustResourceUrl(this.personnage.trailerYT);
+        //this.trailer = this.sanitizer.bypassSecurityTrustResourceUrl(this.personnage.trailerYT);
 
          this.refreshConstellationsList()
          this.refreshAptitudesList()
@@ -79,6 +79,10 @@ trailer!: SafeResourceUrl;
     if(e.detail.value != undefined){
         this.selectedSegment = e.detail.value.toString()
     }
+  }
+
+  onDetailWeapon(nom:string){
+    this.router.navigateByUrl('armes/detail/'+nom)
   }
 
   openModal(materiau: any) {

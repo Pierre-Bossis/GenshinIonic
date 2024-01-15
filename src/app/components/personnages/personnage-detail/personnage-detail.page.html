@@ -44,7 +44,7 @@
   </ion-grid>
 
   <!-- details -->
-  <ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'detail'">
+  <ion-grid class="ion-table ion-text-center fade-in" *ngIf="selectedSegment === 'detail'">
     <ion-row class="ion-justify-content-center">
       <ion-col size-md="8" size-lg="8" size-xl="5">
         <table>
@@ -74,7 +74,7 @@
           </tr>
           <tr *ngIf="arme">
             <td>Arme signature</td>
-            <td>
+            <td (click)="onDetailWeapon(arme.nom)">
               <img [src]="'data:image/webp;base64,' + arme.image" alt="{{arme.nom}}" [ngStyle]="{'width': arme.typeArme === 'Catalyseur' ? '35px' : '30px', 'height': arme.typeArme === 'Catalyseur' ? '35px' : '50px'}" />
               <ion-text color="primary">{{arme.nom}}</ion-text>
             </td>
@@ -99,7 +99,7 @@
   </ion-grid>
 
 <!-- livres aptitudes -->
-<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'livresAptitude'">
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'livresAptitude'">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="8" size-lg="8" size-xl="5">
       <h4>Livres d'aptitudes</h4>
@@ -116,7 +116,7 @@
 </ion-grid>
 
 <!-- materiaux elevation -->
-<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxElevation'">
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxElevation'">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="8" size-lg="8" size-xl="5">
       <h4>Materiaux d'elevation</h4>
@@ -133,7 +133,7 @@
 </ion-grid>
 
 <!-- materiaux amelioration -->
-<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxAmelioration'">
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxAmelioration'">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="8" size-lg="8" size-xl="5">
       <h4>Materiaux d'amélioration</h4>
@@ -150,7 +150,7 @@
 </ion-grid>
 
 <!-- constellations -->
-<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'constellations'">
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'constellations'">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="8" size-lg="8" size-xl="5">
       <h4>Constellations</h4>
@@ -167,7 +167,7 @@
 </ion-grid>
 
 <!-- aptitudes -->
-<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'aptitudes'">
+<ion-grid class="fade-in ion-table ion-text-center" *ngIf="selectedSegment === 'aptitudes'">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="8" size-lg="8" size-xl="5">
       <h4>Aptitudes</h4>

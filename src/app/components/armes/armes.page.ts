@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingController, SegmentCustomEvent } from '@ionic/angular';
 import { Armes } from 'src/app/_models/arme'; 
 import { ArmesService } from 'src/app/_services/armes.service';
@@ -11,10 +12,14 @@ import { ArmesService } from 'src/app/_services/armes.service';
 export class ArmesPage implements OnInit {
 armes:Armes[] = []
 armesFiltered:Armes[] = []
-  constructor(private armesService:ArmesService, private loadingCtrl:LoadingController) { }
+  constructor(private armesService:ArmesService, private loadingCtrl:LoadingController, private router:Router) { }
 
   ngOnInit() {
     this.loadingData()
+  }
+
+  onDetail(nom:string){
+    this.router.navigateByUrl('armes/detail/'+nom)
   }
 
   segmentChanged(typeArme:SegmentCustomEvent){

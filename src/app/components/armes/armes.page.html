@@ -4,6 +4,11 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Armes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only"name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -34,7 +39,7 @@
   <ion-grid *ngIf="armes" class="ion-text-center">
     <ion-row class="ion-align-items-center ion-justify-content-center ion-align-items-stretch">
       <ion-col size-xs="6" size-md="3" size-xl="2" *ngFor="let arme of armesFiltered">
-        <ion-card class="custom-card" button>
+        <ion-card (click)="onDetail(arme.nom)" class="fade-in custom-card" button>
           <ion-img class="image-container" [src]="'data:image/jpeg;base64,' + arme.image"></ion-img>
           <ion-card-content>
             <p class="ion-text-center" style="margin-bottom: 10px;">{{ arme.nom }}</p>
