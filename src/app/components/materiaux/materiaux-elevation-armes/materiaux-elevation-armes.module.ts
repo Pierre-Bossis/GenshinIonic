@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { MateriauxElevationArmesPageRoutingModule } from './materiaux-elevation-armes-routing.module';
 
 import { MateriauxElevationArmesPage } from './materiaux-elevation-armes.page';
-import { MateriauxElevationArmesModalDetailComponent } from './materiaux-elevation-armes-modal-detail/materiaux-elevation-armes-modal-detail.component';
 import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
 
 @NgModule({
@@ -18,6 +17,6 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     MateriauxElevationArmesPageRoutingModule,
     ApplicationPipesModuleModule
   ],
-  declarations: [MateriauxElevationArmesPage, MateriauxElevationArmesModalDetailComponent]
+  declarations: [MateriauxElevationArmesPage]
 })
 export class MateriauxElevationArmesPageModule {}

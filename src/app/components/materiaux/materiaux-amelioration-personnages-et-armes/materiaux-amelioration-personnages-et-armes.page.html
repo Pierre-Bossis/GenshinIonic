@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Materiaux Amelioration Persos/Armes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+</div>
+
+
+<ion-list class="ion-align-self-center custom-list">
+  <ion-item (click)="openModal(materiau)" *ngFor="let materiau of materiaux" class="custom-item" button detail>
+    <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+    <ion-label>
+      <ion-text>{{materiau.nom}}</ion-text>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+</ion-content>

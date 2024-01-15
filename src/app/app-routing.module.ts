@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'materiaux-elevation-personnages',
     loadChildren: () => import('./components/materiaux/materiaux-elevation-personnages/materiaux-elevation-personnages.module').then( m => m.MateriauxElevationPersonnagesPageModule)
   },
+  {
+    path: 'livres-aptitude',
+    loadChildren: () => import('./components/livres-aptitude/livres-aptitude.module').then( m => m.LivresAptitudePageModule)
+  },
+  {
+    path: 'materiaux-amelioration-personnages-et-armes',
+    loadChildren: () => import('./components/materiaux/materiaux-amelioration-personnages-et-armes/materiaux-amelioration-personnages-et-armes.module').then( m => m.MateriauxAmeliorationPersonnagesEtArmesPageModule)
+  },
 ];
 
 @NgModule({

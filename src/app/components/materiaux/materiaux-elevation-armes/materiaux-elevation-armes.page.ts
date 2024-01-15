@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { MateriauxElevationArmes } from 'src/app/_models/materiaux-elevation-armes';
 import { MateriauxElevationArmesService } from 'src/app/_services/materiaux-elevation-armes.service';
-import { MateriauxElevationArmesModalDetailComponent } from './materiaux-elevation-armes-modal-detail/materiaux-elevation-armes-modal-detail.component';
+import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
 
 @Component({
   selector: 'app-materiaux-elevation-armes',
@@ -20,7 +20,7 @@ export class MateriauxElevationArmesPage implements OnInit {
 
   openModal(materiau: MateriauxElevationArmes) {
     this.modalCtrl.create({
-      component: MateriauxElevationArmesModalDetailComponent,
+      component: ModalBasicComponent,
       componentProps: { materiau: materiau }
     }).then(modalEl => {
       modalEl.present()

@@ -7,8 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ProduitsPageRoutingModule } from './produits-routing.module';
 
 import { ProduitsPage } from './produits.page';
-import { ProduitsModalDetailComponent } from './produits-modal-detail/produits-modal-detail.component';
-import { StarPipe } from 'src/app/shared/pipes/star.pipe';
 import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
 
 @NgModule({
@@ -19,7 +17,7 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     ProduitsPageRoutingModule,
     ApplicationPipesModuleModule
   ],
-  declarations: [ProduitsPage,ProduitsModalDetailComponent],
+  declarations: [ProduitsPage],
   providers: []
 })
 export class ProduitsPageModule {}

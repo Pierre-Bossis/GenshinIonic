@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MateriauxElevationPersonnages } from 'src/app/_models/materiaux-elevation-personnages';
 import { MateriauxElevationPersonnagesService } from 'src/app/_services/materiaux-elevation-personnages.service';
-import { MateriauxElevationPersonnagesModalDetailComponent } from './materiaux-elevation-personnages-modal-detail/materiaux-elevation-personnages-modal-detail.component';
+import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
 
 @Component({
   selector: 'app-materiaux-elevation-personnages',
@@ -20,7 +20,7 @@ spinner:boolean = true
 
   openModal(materiau: MateriauxElevationPersonnages) {
     this.modalCtrl.create({
-      component: MateriauxElevationPersonnagesModalDetailComponent,
+      component: ModalBasicComponent,
       componentProps: { materiau: materiau }
     }).then(modalEl => {
       modalEl.present()

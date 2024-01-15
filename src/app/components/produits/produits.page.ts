@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Produits } from 'src/app/_models/produits';
 import { ProduitsService } from 'src/app/_services/produits.service';
-import { ProduitsModalDetailComponent } from './produits-modal-detail/produits-modal-detail.component';
+import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
 
 @Component({
   selector: 'app-produits',
@@ -22,8 +22,8 @@ export class ProduitsPage implements OnInit {
 
   openModal(produit: Produits) {
     this.modalCtrl.create({
-      component: ProduitsModalDetailComponent,
-      componentProps: { produit: produit }
+      component: ModalBasicComponent,
+      componentProps: { materiau : produit }
     }).then(modalEl => {
       modalEl.present()
     })

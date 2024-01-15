@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MateriauxAmeliorationPersonnagesPageRoutingModule } from './materiaux-amelioration-personnages-routing.module';
+import { LivresAptitudePageRoutingModule } from './livres-aptitude-routing.module';
 
-import { MateriauxAmeliorationPersonnagesPage } from './materiaux-amelioration-personnages.page';
+import { LivresAptitudePage } from './livres-aptitude.page';
 import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     FormsModule,
     IonicModule,
     ApplicationPipesModuleModule,
-    MateriauxAmeliorationPersonnagesPageRoutingModule
+    LivresAptitudePageRoutingModule
   ],
-  declarations: [MateriauxAmeliorationPersonnagesPage]
+  declarations: [LivresAptitudePage]
 })
-export class MateriauxAmeliorationPersonnagesPageModule {}
+export class LivresAptitudePageModule {}
