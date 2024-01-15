@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProduitsPageRoutingModule } from './produits-routing.module';
 
 import { ProduitsPage } from './produits.page';
-import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     FormsModule,
     IonicModule,
     ProduitsPageRoutingModule,
-    ApplicationPipesModuleModule
+    SharedModule
   ],
   declarations: [ProduitsPage],
   providers: []

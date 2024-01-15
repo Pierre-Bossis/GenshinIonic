@@ -7,14 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MateriauxAmeliorationPersonnagesEtArmesPageRoutingModule } from './materiaux-amelioration-personnages-et-armes-routing.module';
 
 import { MateriauxAmeliorationPersonnagesEtArmesPage } from './materiaux-amelioration-personnages-et-armes.page';
-import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ApplicationPipesModuleModule,
+    SharedModule,
     MateriauxAmeliorationPersonnagesEtArmesPageRoutingModule
   ],
   declarations: [MateriauxAmeliorationPersonnagesEtArmesPage]

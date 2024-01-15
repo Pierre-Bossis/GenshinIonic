@@ -8,7 +8,7 @@ import { ArmesPageRoutingModule } from './armes-routing.module';
 
 import { ArmesPage } from './armes.page';
 import { StarPipe } from 'src/app/shared/pipes/star.pipe';
-import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     FormsModule,
     IonicModule,
     ArmesPageRoutingModule,
-    ApplicationPipesModuleModule
+    SharedModule
   ],
   declarations: [ArmesPage],
   providers: []

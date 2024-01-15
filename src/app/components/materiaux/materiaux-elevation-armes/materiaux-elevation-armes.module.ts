@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MateriauxElevationArmesPageRoutingModule } from './materiaux-elevation-armes-routing.module';
 
 import { MateriauxElevationArmesPage } from './materiaux-elevation-armes.page';
-import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-p
     FormsModule,
     IonicModule,
     MateriauxElevationArmesPageRoutingModule,
-    ApplicationPipesModuleModule
+    SharedModule
   ],
   declarations: [MateriauxElevationArmesPage]
 })

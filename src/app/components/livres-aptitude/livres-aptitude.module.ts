@@ -7,14 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { LivresAptitudePageRoutingModule } from './livres-aptitude-routing.module';
 
 import { LivresAptitudePage } from './livres-aptitude.page';
-import { ApplicationPipesModuleModule } from 'src/app/shared/pipes/application-pipes-module/application-pipes-module.module';
+import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ApplicationPipesModuleModule,
+    SharedModule,
     LivresAptitudePageRoutingModule
   ],
   declarations: [LivresAptitudePage]
