@@ -14,4 +14,12 @@ url:string = environment.apiurl
   getAll():Observable<LivresAptitude[]>{
     return this.http.get<LivresAptitude[]>(this.url + "livresaptitude")
   }
+
+  getByName(name: string): Observable<any> {
+    return this.http.get<LivresAptitude>(this.url + "livresaptitude/" + name)
+  }
+
+  getById(id:number): Observable<LivresAptitude> {
+    return this.http.get<LivresAptitude>(this.url + "livresaptitude/" + id)
+  }
 }

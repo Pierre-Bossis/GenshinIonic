@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ArmesPageRoutingModule } from './armes-routing.module';
 
 import { ArmesPage } from './armes.page';
-import { StarPipe } from 'src/app/shared/pipes/star.pipe';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({

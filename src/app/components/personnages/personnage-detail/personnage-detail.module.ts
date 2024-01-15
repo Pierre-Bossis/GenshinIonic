@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PersonnagesPageRoutingModule } from './personnages-routing.module';
+import { PersonnageDetailPageRoutingModule } from './personnage-detail-routing.module';
 
-import { PersonnagesPage } from './personnages.page';
+import { PersonnageDetailPage } from './personnage-detail.page';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { SharedModule } from 'src/app/shared/shared-module.module';
     FormsModule,
     IonicModule,
     SharedModule,
-    PersonnagesPageRoutingModule
+    PersonnageDetailPageRoutingModule
   ],
-  declarations: [PersonnagesPage]
+  declarations: [PersonnageDetailPage]
 })
-export class PersonnagesPageModule {}
+export class PersonnageDetailPageModule {}

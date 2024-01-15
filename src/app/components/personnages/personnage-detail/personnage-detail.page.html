@@ -1,0 +1,176 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="personnages"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="personnage">{{personnage.nom}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" *ngIf="personnage">
+  <div *ngIf="spinner" class="loader">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+
+  <ion-grid class="ion-text-center" *ngIf="personnage">
+
+    <ion-segment (ionChange)="segmentChanged($event)" [scrollable]="true" value="detail" class="persosIcons">
+      <ion-segment-button value="detail">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="livresAptitude">
+        <ion-icon name="cube-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="materiauxElevation">
+        <ion-icon name="file-tray-full-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="materiauxAmelioration">
+        <ion-icon name="egg-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="constellations">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="aptitudes">
+        <ion-icon name="ribbon-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="8" size-lg="8" size-xl="5">
+        <ion-img [src]="'data:image/jpeg;base64,' + personnage.splashArt"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- details -->
+  <ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'detail'">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="8" size-lg="8" size-xl="5">
+        <table>
+          <tr>
+            <td>Rareté</td>
+            <td><span class="star">{{personnage.rarete | star}}</span></td>
+          </tr>
+          <tr>
+            <td>Oeil Divin</td>
+            <td>{{personnage.oeilDivin}}</td>
+          </tr>
+          <tr>
+            <td>Type d'arme</td>
+            <td>{{personnage.typeArme}}</td>
+          </tr>
+          <tr>
+            <td>Lore</td>
+            <td>{{personnage.lore}}</td>
+          </tr>
+          <tr>
+            <td>Nationalité</td>
+            <td>{{personnage.nationalite}}</td>
+          </tr>
+          <tr>
+            <td>Date de sortie</td>
+            <td>{{personnage.dateSortie | date:'d MMMM y'}}</td>
+          </tr>
+          <tr *ngIf="arme">
+            <td>Arme signature</td>
+            <td><img [src]="'data:image/webp;base64,' + arme.image" alt="{{arme.nom}}" [ngStyle]="{'width': arme.typeArme === 'Catalyseur' ? '35px' : '30px', 'height': arme.typeArme === 'Catalyseur' ? '35px' : '50px'}" />
+              {{arme.nom}}</td>
+          </tr>
+          <tr>
+            <td>Matériau d'amélioration</td>
+            <td *ngIf="mat">
+              <ion-img style="width: 35px;height: 30px;" [src]="'data:image/webp;base64,' + mat.icone" alt="{{mat.nom}}"></ion-img>
+              {{mat.nom}}
+            </td>
+          </tr>
+          <tr>
+            <td>Produit</td>
+            <td *ngIf="produit">
+              <ion-img style="width: 35px;height: 30px;" [src]="'data:image/webp;base64,' + produit.icone" alt="{{produit.nom}}"></ion-img>
+                {{produit.nom}}
+              </td>
+          </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!-- livres aptitudes -->
+<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'livresAptitude'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item (click)="openModal(livre)" button *ngFor="let livre of livresAptitude" detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + livre.icone"></ion-img>
+          <p>{{livre.nom}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- materiaux elevation -->
+<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxElevation'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item (click)="openModal(materiau)" button *ngFor="let materiau of materiauxElevation" detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+          <p>{{materiau.nom}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- materiaux elevation -->
+<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'materiauxAmelioration'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item (click)="openModal(materiau)" button *ngFor="let materiau of materiauxAmelioPersosArmes" detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + materiau.icone"></ion-img>
+          <p>{{materiau.nom}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- constellations -->
+<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'constellations'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item (click)="openModalConstellationsAptitudes(constellation)" button *ngFor="let constellation of constellations" detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + constellation.icone"></ion-img>
+          <p>{{constellation.nom}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- aptitudes -->
+<ion-grid class="ion-table ion-text-center" *ngIf="selectedSegment === 'aptitudes'">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-md="8" size-lg="8" size-xl="5">
+      <ion-list class="ion-align-self-center custom-list">
+        <ion-item (click)="openModalConstellationsAptitudes(aptitudes)" button *ngFor="let aptitudes of aptitudes" detail>
+          <ion-img [src]="'data:image/jpeg;base64,' + aptitudes.icone"></ion-img>
+          <p>{{aptitudes.nom}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-iframe [src]="trailer" frameborder="0" allowfullscreen></ion-iframe>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>

@@ -3,14 +3,52 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>personnages</ion-title>
+    <ion-title>Personnages</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">personnages</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1 class="ion-text-center">Personnages</h1>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [scrollable]="true" value="All" class="persosIcons">
+    <ion-segment-button value="All">
+      <span style="font-size: 45px;margin-bottom: 5px;">★</span>
+    </ion-segment-button>
+    <ion-segment-button value="Pyro">
+      <ion-img src="../../../assets/Pyro.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Hydro">
+      <ion-img src="../../../assets/Hydro.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Anemo">
+      <ion-img src="../../../assets/Anemo.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Electro">
+      <ion-img src="../../../assets/Electro.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Dendro">
+      <ion-img src="../../../assets/Dendro.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Cryo">
+      <ion-img src="../../../assets/Cryo.png"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="Geo">
+      <ion-img src="../../../assets/Geo.png"></ion-img>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid *ngIf="personnages" class="ion-text-center">
+    <ion-row class="ion-align-items-center ion-justify-content-center ion-align-items-stretch">
+      <ion-col size-xs="6" size-md="3" size-xl="2" *ngFor="let personnage of personnagesFiltered">
+        <ion-card class="custom-card" (click)="onDetail(personnage.nom)" button>
+          <ion-img class="image-container" [src]="'data:image/jpeg;base64,' + personnage.portrait"></ion-img>
+          <ion-card-content>
+            <p class="ion-text-center" style="margin-bottom: 10px;">{{ personnage.nom }}</p>
+            <p><span class="star ion-text-center">{{ personnage.rarete | star }}</span></p>
+            <ion-img class="cardOeilDivin" src="../../../assets/{{personnage.oeilDivin}}.png"></ion-img>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

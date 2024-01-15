@@ -1,0 +1,54 @@
+/* table*/
+
+.ion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ion-table th,
+  .ion-table td {
+    border: 1px solid var(--ion-color-dark);
+    padding: 8px;
+    text-align: left;
+    color: var(--ion-color-light);
+  }
+  
+  .ion-table .star {
+    color: var(--ion-color-warning);
+  }
+  
+  .ion-table tr:nth-child(odd) {
+    background-color: var(--ion-color-dark-shade);
+  }
+
+  /* Fin table */
+
+  .persosIcons ion-segment-button ion-img {
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+//   mats
+  ion-list ion-item ion-img{
+    height: 50px;
+    width: 50px;
+  }
+
+  .custom-item ion-img {
+    margin-right: 10px;
+  }
+  ion-item{
+    margin-bottom: 20px;
+  }
+
+  .custom-item{
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  ion-list p {
+    font-size: 13px;
+  }

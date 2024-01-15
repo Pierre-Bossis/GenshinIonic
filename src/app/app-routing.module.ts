@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'materiaux-amelioration-personnages-et-armes',
     loadChildren: () => import('./components/materiaux/materiaux-amelioration-personnages-et-armes/materiaux-amelioration-personnages-et-armes.module').then( m => m.MateriauxAmeliorationPersonnagesEtArmesPageModule)
   },
+  {
+    path: 'artefacts',
+    loadChildren: () => import('./components/artefacts/artefacts.module').then( m => m.ArtefactsPageModule)
+  },
 ];
 
 @NgModule({
