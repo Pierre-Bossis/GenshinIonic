@@ -85,12 +85,21 @@
             <ion-label>Jukebox</ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="">
+
+        <ion-menu-toggle *ngIf="!connectedUser" contentId="m1">
+          <ion-item routerLink="login">
             <ion-icon name="log-in-outline" slot="start"></ion-icon>
             <ion-label>Login</ion-label>
           </ion-item>
         </ion-menu-toggle>
+
+        <ion-menu-toggle *ngIf="connectedUser" contentId="m1">
+          <ion-item (click)="logout()">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
       </ion-list>
     </ion-content>
   </ion-menu>

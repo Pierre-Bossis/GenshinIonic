@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, SegmentCustomEvent } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { Personnages } from 'src/app/_models/personnages';
+import { ConnectedUser } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
 import { PersonnagesService } from 'src/app/_services/personnages.service';
 
 @Component({
@@ -9,13 +12,18 @@ import { PersonnagesService } from 'src/app/_services/personnages.service';
   templateUrl: './personnages.page.html',
   styleUrls: ['./personnages.page.scss'],
 })
-export class PersonnagesPage implements OnInit {
+export class PersonnagesPage implements OnInit, OnDestroy {
 personnages:Personnages[] = []
 personnagesFiltered:Personnages[] = []
+connectedUser!:ConnectedUser | undefined
+connectedUserSubscription!:Subscription
 
-  constructor(private personnagesService:PersonnagesService,private  loadingCtrl:LoadingController, private router:Router) { }
+  constructor(private personnagesService:PersonnagesService,private  loadingCtrl:LoadingController, private router:Router, private authService:AuthService) { }
   ngOnInit() {
     this.loadingData()
+    this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
+      this.connectedUser = connectedUser;
+    });
   }
 
   segmentChanged(element:SegmentCustomEvent){
@@ -40,5 +48,12 @@ personnagesFiltered:Personnages[] = []
 
   onDetail(nom:string){    
     this.router.navigateByUrl('personnages/detail/' + nom);
+  }
+
+  ngOnDestroy() {
+    // Désabonnement lors de la destruction du composant
+    if (this.connectedUserSubscription) {
+      this.connectedUserSubscription.unsubscribe();
+    }
   }
 }

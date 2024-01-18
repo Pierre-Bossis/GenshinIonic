@@ -47,6 +47,20 @@ const routes: Routes = [
     path: 'artefacts',
     loadChildren: () => import('./components/artefacts/artefacts.module').then( m => m.ArtefactsPageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./components/auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./components/auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
 ];
 
 @NgModule({

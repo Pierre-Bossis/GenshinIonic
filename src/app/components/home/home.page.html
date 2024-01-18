@@ -6,9 +6,9 @@
     <ion-title>
       Home
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only"name="person-circle-outline"></ion-icon>
+    <ion-buttons *ngIf="!connectedUser" slot="end">
+      <ion-button routerLink="/register">
+        <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
