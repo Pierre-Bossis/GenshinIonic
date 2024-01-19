@@ -56,6 +56,14 @@ const routes: Routes = [
     loadChildren: () => import('./components/auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'jukebox',
+    loadChildren: () => import('./components/jukebox/jukebox.module').then( m => m.JukeboxPageModule)
+  },
+  {
+    path: 'regions',
+    loadChildren: () => import('./components/regions/regions.module').then( m => m.RegionsPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
