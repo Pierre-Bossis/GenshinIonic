@@ -20,6 +20,10 @@ export class HomePage implements OnInit, OnDestroy{
     });
   }
 
+  logout(){
+    this.authService.logout()
+  }
+
   ngOnDestroy() {
     // Désabonnement lors de la destruction du composant
     if (this.connectedUserSubscription) {

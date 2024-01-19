@@ -19,6 +19,9 @@ export class RegionsPage implements OnInit,OnDestroy {
     });
   }
 
+  logout(){
+    this.authService.logout()
+  }
   ngOnDestroy(): void {
     if(this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()

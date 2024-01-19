@@ -50,6 +50,9 @@ connectedUserSubscription!:Subscription
     })
   }
 
+  logout(){
+    this.authService.logout()
+  }
   ngOnDestroy() {
     // Désabonnement lors de la destruction du composant
     if (this.connectedUserSubscription) {

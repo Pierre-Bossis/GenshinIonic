@@ -50,8 +50,10 @@ connectedUserSubscription!:Subscription
     this.router.navigateByUrl('personnages/detail/' + nom);
   }
 
+  logout(){
+    this.authService.logout()
+  }
   ngOnDestroy() {
-    // Désabonnement lors de la destruction du composant
     if (this.connectedUserSubscription) {
       this.connectedUserSubscription.unsubscribe();
     }
