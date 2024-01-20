@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { MateriauxAmeliorationPersonnages } from 'src/app/_models/materiaux-amelioration-personnages';
+import { ConnectedUser } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
 import { MateriauxAmeliorationPersonnagesService } from 'src/app/_services/materiaux-amelioration-personnages.service';
 import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
 
@@ -9,13 +12,18 @@ import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-bas
   templateUrl: './materiaux-amelioration-personnages.page.html',
   styleUrls: ['./materiaux-amelioration-personnages.page.scss'],
 })
-export class MateriauxAmeliorationPersonnagesPage implements OnInit {
+export class MateriauxAmeliorationPersonnagesPage implements OnInit, OnDestroy {
 materiaux:MateriauxAmeliorationPersonnages[] = []
 spinner:boolean = true
-  constructor(private materiauxService:MateriauxAmeliorationPersonnagesService, private modalCtrl:ModalController) { }
+connectedUser!:ConnectedUser | undefined
+connectedUserSubscription!:Subscription
+  constructor(private materiauxService:MateriauxAmeliorationPersonnagesService, private modalCtrl:ModalController,private authService:AuthService) { }
 
   ngOnInit() {
     this.loadingData()
+    this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
+      this.connectedUser = connectedUser
+    });
   }
 
   openModal(materiau: MateriauxAmeliorationPersonnages) {
@@ -34,4 +42,8 @@ spinner:boolean = true
     });
   }
 
+  ngOnDestroy(): void {
+    if(this.connectedUserSubscription)
+      this.connectedUserSubscription.unsubscribe()
+  }
 }

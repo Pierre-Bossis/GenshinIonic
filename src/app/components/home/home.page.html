@@ -6,19 +6,6 @@
     <ion-title>
       Home
     </ion-title>
-    <ion-buttons *ngIf="!connectedUser" slot="end">
-      <ion-button routerLink="/login">
-        <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
-      </ion-button>
-      <ion-button routerLink="/register">
-        <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons *ngIf="connectedUser" slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>produits</ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="primary" *ngIf="connectedUser && connectedUser.role === 'Admin'">
       <ion-button routerLink="">
         <ion-icon name="add" slot="icon-only"></ion-icon>
       </ion-button>
