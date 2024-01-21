@@ -6,6 +6,7 @@ import { ConnectedUser } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { MateriauxAmeliorationPersonnagesEtArmesService } from 'src/app/_services/materiaux-amelioration-personnages-et-armes.service';
 import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
+import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resources-create/modal-resources-create.component';
 
 @Component({
   selector: 'app-materiaux-amelioration-personnages-et-armes',
@@ -31,6 +32,15 @@ export class MateriauxAmeliorationPersonnagesEtArmesPage implements OnInit, OnDe
       this.modalCtrl.create({
         component: ModalBasicComponent,
         componentProps: { materiau: materiau }
+      }).then(modalEl => {
+        modalEl.present()
+      })
+    }
+
+    openModalCreate(item:string){
+      this.modalCtrl.create({
+        component: ModalResourcesCreateComponent,
+        componentProps: {item : item}
       }).then(modalEl => {
         modalEl.present()
       })

@@ -6,6 +6,7 @@ import { ConnectedUser } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { LivresAptitudeService } from 'src/app/_services/livres-aptitude.service';
 import { ModalBasicComponent } from 'src/app/shared/modals/modal-basic/modal-basic.component';
+import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resources-create/modal-resources-create.component';
 
 @Component({
   selector: 'app-livres-aptitude',
@@ -32,6 +33,15 @@ export class LivresAptitudePage implements OnInit {
     this.modalCtrl.create({
       component: ModalBasicComponent,
       componentProps: { materiau : livre }
+    }).then(modalEl => {
+      modalEl.present()
+    })
+  }
+
+  openModalCreate(item:string){
+    this.modalCtrl.create({
+      component: ModalResourcesCreateComponent,
+      componentProps: {item : item}
     }).then(modalEl => {
       modalEl.present()
     })
