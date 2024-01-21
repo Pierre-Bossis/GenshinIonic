@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, SegmentCustomEvent } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Personnages } from 'src/app/_models/personnages';
+import { Personnages, PersonnagesList } from 'src/app/_models/personnages';
 import { ConnectedUser } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PersonnagesService } from 'src/app/_services/personnages.service';
@@ -13,8 +13,8 @@ import { PersonnagesService } from 'src/app/_services/personnages.service';
   styleUrls: ['./personnages.page.scss'],
 })
 export class PersonnagesPage implements OnInit, OnDestroy {
-personnages:Personnages[] = []
-personnagesFiltered:Personnages[] = []
+personnages:PersonnagesList[] = []
+personnagesFiltered:PersonnagesList[] = []
 connectedUser!:ConnectedUser | undefined
 connectedUserSubscription!:Subscription
 
@@ -23,7 +23,7 @@ connectedUserSubscription!:Subscription
     this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser;
-    });
+    });    
   }
 
   segmentChanged(element:SegmentCustomEvent){
@@ -41,6 +41,7 @@ connectedUserSubscription!:Subscription
       this.personnagesService.getAll().subscribe((data) => {
         this.personnages = data
         this.personnagesFiltered = this.personnages
+        console.log(this.personnages);
         loadlingEl.dismiss()
       });
     })

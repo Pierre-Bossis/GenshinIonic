@@ -15,6 +15,17 @@ export interface Personnages {
     rarete:number
 }
 
+export interface PersonnagesList {
+    id:number
+    nom:string,
+    oeilDivin:string
+    typeArme:string
+    nationalite:string
+    portrait:string
+    dateSortie:Date
+    rarete:number
+}
+
 export interface PersonnagesForm{
     nom:string,
     oeilDivin:string
