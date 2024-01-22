@@ -18,12 +18,18 @@ export class MateriauxElevationArmesPage implements OnInit, OnDestroy {
   spinner: boolean = true
   connectedUser!:ConnectedUser | undefined
   connectedUserSubscription!:Subscription
+  updateSubscription!:Subscription
   constructor(private matsElevationArmesService: MateriauxElevationArmesService, private modalCtrl: ModalController,private authService:AuthService) { }
 
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.matsElevationArmesService.listeMateriauxUpdated$().subscribe(() => {
+      this.loadingData()
     });
   }
 
@@ -55,5 +61,7 @@ export class MateriauxElevationArmesPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if(this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()
+    if(this.updateSubscription)
+      this.updateSubscription.unsubscribe()
   }
 }

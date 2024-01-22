@@ -14,48 +14,57 @@ import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resou
   styleUrls: ['./materiaux-amelioration-personnages-et-armes.page.scss'],
 })
 export class MateriauxAmeliorationPersonnagesEtArmesPage implements OnInit, OnDestroy {
-  materiaux:MateriauxAmeliorationPersonnagesEtArmes[] = []
-  spinner:boolean = true
-  connectedUser!:ConnectedUser | undefined
-  connectedUserSubscription!:Subscription
-    constructor(private materiauxService:MateriauxAmeliorationPersonnagesEtArmesService, private modalCtrl:ModalController,
-                private authService:AuthService) { }
-  
-    ngOnInit() {
+  materiaux: MateriauxAmeliorationPersonnagesEtArmes[] = []
+  spinner: boolean = true
+  connectedUser!: ConnectedUser | undefined
+  connectedUserSubscription!: Subscription
+  updateSubscription!: Subscription
+
+  constructor(private materiauxService: MateriauxAmeliorationPersonnagesEtArmesService, private modalCtrl: ModalController,
+    private authService: AuthService) { }
+
+  ngOnInit() {
+    this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
+      this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.materiauxService.listeMateriauxUpdated$().subscribe(() => {
       this.loadingData()
-      this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
-        this.connectedUser = connectedUser
-      });
-    }
-  
-    openModal(materiau: MateriauxAmeliorationPersonnagesEtArmes) {
-      this.modalCtrl.create({
-        component: ModalBasicComponent,
-        componentProps: { materiau: materiau }
-      }).then(modalEl => {
-        modalEl.present()
-      })
-    }
+    });
+  }
 
-    openModalCreate(item:string){
-      this.modalCtrl.create({
-        component: ModalResourcesCreateComponent,
-        componentProps: {item : item}
-      }).then(modalEl => {
-        modalEl.present()
-      })
-    }
-  
-    private loadingData() {
-      this.materiauxService.getAll().subscribe((data) => {
-        this.materiaux = data
-        this.spinner = false
-      });
-    }
+  openModal(materiau: MateriauxAmeliorationPersonnagesEtArmes) {
+    this.modalCtrl.create({
+      component: ModalBasicComponent,
+      componentProps: { materiau: materiau }
+    }).then(modalEl => {
+      modalEl.present()
+    })
+  }
+
+  openModalCreate(item: string) {
+    this.modalCtrl.create({
+      component: ModalResourcesCreateComponent,
+      componentProps: { item: item }
+    }).then(modalEl => {
+      modalEl.present()
+    })
+  }
+
+  private loadingData() {
+    this.materiauxService.getAll().subscribe((data) => {
+      this.materiaux = data
+      this.spinner = false
+    });
+  }
 
 
-    ngOnDestroy(): void {
-      if(this.connectedUserSubscription)
-        this.connectedUserSubscription.unsubscribe()
-    }
+  ngOnDestroy(): void {
+    if (this.connectedUserSubscription)
+      this.connectedUserSubscription.unsubscribe()
+    if (this.updateSubscription)
+      this.updateSubscription.unsubscribe()
+  }
 }

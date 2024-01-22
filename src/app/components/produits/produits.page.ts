@@ -14,16 +14,22 @@ import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resou
   styleUrls: ['./produits.page.scss'],
 })
 export class ProduitsPage implements OnInit, OnDestroy {
-connectedUser:ConnectedUser | undefined
-connectedUserSubscription!:Subscription
+  connectedUser: ConnectedUser | undefined
+  connectedUserSubscription!: Subscription
+  updateSubscription!: Subscription
   constructor(private produitsService: ProduitsService, private modalCtrl: ModalController, private loadingCtrl: LoadingController,
-              private authService:AuthService) { }
+    private authService: AuthService) { }
   produits: Produits[] = []
   spinner: boolean = true
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.produitsService.listeProduitsUpdated$().subscribe(() => {
+      this.loadingData()
     });
   }
 
@@ -32,16 +38,16 @@ connectedUserSubscription!:Subscription
   openModal(produit: Produits) {
     this.modalCtrl.create({
       component: ModalBasicComponent,
-      componentProps: { materiau : produit }
+      componentProps: { materiau: produit }
     }).then(modalEl => {
       modalEl.present()
     })
   }
 
-  openModalCreate(item:string){
+  openModalCreate(item: string) {
     this.modalCtrl.create({
       component: ModalResourcesCreateComponent,
-      componentProps: {item : item}
+      componentProps: { item: item }
     }).then(modalEl => {
       modalEl.present()
     })
@@ -55,7 +61,9 @@ connectedUserSubscription!:Subscription
   }
 
   ngOnDestroy(): void {
-    if(this.connectedUserSubscription)
+    if (this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()
+    if (this.updateSubscription)
+      this.updateSubscription.unsubscribe()
   }
 }

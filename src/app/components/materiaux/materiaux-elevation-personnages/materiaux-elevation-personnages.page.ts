@@ -18,12 +18,18 @@ materiaux:MateriauxElevationPersonnages[] = []
 spinner:boolean = true
 connectedUser!:ConnectedUser | undefined
 connectedUserSubscription!:Subscription
+updateSubscription!:Subscription
   constructor(private materiauxService:MateriauxElevationPersonnagesService, private modalCtrl:ModalController,private authService:AuthService) { }
 
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.materiauxService.listeMateriauxUpdated$().subscribe(() => {
+      this.loadingData()
     });
   }
 
@@ -55,5 +61,7 @@ connectedUserSubscription!:Subscription
   ngOnDestroy(): void {
     if(this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()
+      if(this.updateSubscription)
+      this.updateSubscription.unsubscribe()
   }
 }

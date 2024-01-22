@@ -16,7 +16,7 @@ import { UploadService } from 'src/app/_services/upload.service';
 })
 export class ModalResourcesCreateComponent  implements OnInit {
 @Input() item!:string
-myFile? : File
+myFile! : File
 createResourceFormGroup!:FormGroup
   constructor(private formBuilder:FormBuilder,private uploadService:UploadService,private modalCtrl:ModalController, private matsElevArmesService:MateriauxElevationArmesService,private produitsService:ProduitsService,
               private matsAmelioPersos:MateriauxAmeliorationPersonnagesService,private matsElevPersos:MateriauxElevationPersonnagesService,
@@ -38,22 +38,22 @@ createResourceFormGroup!:FormGroup
     const fullForm = this.createResourceFormGroup.value
     switch(this.item){
       case 'Materiau Elevation Armes':
-        //create materiaux elevation armes
+        this.matsElevArmesService.create(fullForm,this.myFile)
         break
       case 'Produit':
-        //this.produitsService.create(fullform,this.myFile)
+        this.produitsService.create(fullForm,this.myFile)
         break
       case 'Materiau Amelioration Personnages':
-        //create
+        this.matsAmelioPersos.create(fullForm,this.myFile)
         break
       case 'Materiau Elevation Personnages':
-        //create
+        this.matsElevPersos.create(fullForm,this.myFile)
         break
       case 'Livre Aptitude':
-        //create
+        this.livresAptitudeService.create(fullForm,this.myFile)
         break
       case 'Materiau Amelioration Personnages Et Armes':
-        //create
+        this.matsAmelioPersosArmesService.create(fullForm,this.myFile)
         break
       default:
         return

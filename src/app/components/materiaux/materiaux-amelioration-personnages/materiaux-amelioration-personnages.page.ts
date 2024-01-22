@@ -14,16 +14,22 @@ import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resou
   styleUrls: ['./materiaux-amelioration-personnages.page.scss'],
 })
 export class MateriauxAmeliorationPersonnagesPage implements OnInit, OnDestroy {
-materiaux:MateriauxAmeliorationPersonnages[] = []
-spinner:boolean = true
-connectedUser!:ConnectedUser | undefined
-connectedUserSubscription!:Subscription
-  constructor(private materiauxService:MateriauxAmeliorationPersonnagesService, private modalCtrl:ModalController,private authService:AuthService) { }
+  materiaux: MateriauxAmeliorationPersonnages[] = []
+  spinner: boolean = true
+  connectedUser!: ConnectedUser | undefined
+  connectedUserSubscription!: Subscription
+  updateSubscription!: Subscription
+  constructor(private materiauxService: MateriauxAmeliorationPersonnagesService, private modalCtrl: ModalController, private authService: AuthService) { }
 
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.materiauxService.listeMateriauxUpdated$().subscribe(() => {
+      this.loadingData()
     });
   }
 
@@ -36,10 +42,10 @@ connectedUserSubscription!:Subscription
     })
   }
 
-  openModalCreate(item:string){
+  openModalCreate(item: string) {
     this.modalCtrl.create({
       component: ModalResourcesCreateComponent,
-      componentProps: {item : item}
+      componentProps: { item: item }
     }).then(modalEl => {
       modalEl.present()
     })
@@ -53,7 +59,9 @@ connectedUserSubscription!:Subscription
   }
 
   ngOnDestroy(): void {
-    if(this.connectedUserSubscription)
+    if (this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()
+    if (this.updateSubscription)
+      this.updateSubscription.unsubscribe()
   }
 }

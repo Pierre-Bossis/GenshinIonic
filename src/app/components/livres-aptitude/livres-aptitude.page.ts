@@ -14,16 +14,22 @@ import { ModalResourcesCreateComponent } from 'src/app/shared/modals/modal-resou
   styleUrls: ['./livres-aptitude.page.scss'],
 })
 export class LivresAptitudePage implements OnInit {
-  connectedUser!:ConnectedUser | undefined
-  connectedUserSubscription!:Subscription
+  connectedUser!: ConnectedUser | undefined
+  connectedUserSubscription!: Subscription
+  updateSubscription!: Subscription
   livres: LivresAptitude[] = []
   spinner: boolean = true
 
-  constructor(private livresAptitudeService: LivresAptitudeService, private modalCtrl: ModalController, private authService:AuthService) { }
+  constructor(private livresAptitudeService: LivresAptitudeService, private modalCtrl: ModalController, private authService: AuthService) { }
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser
+    });
+
+    this.loadingData()
+
+    this.updateSubscription = this.livresAptitudeService.listeLivresUpdated$().subscribe(() => {
+      this.loadingData()
     });
   }
 
@@ -32,16 +38,16 @@ export class LivresAptitudePage implements OnInit {
   openModal(livre: LivresAptitude) {
     this.modalCtrl.create({
       component: ModalBasicComponent,
-      componentProps: { materiau : livre }
+      componentProps: { materiau: livre }
     }).then(modalEl => {
       modalEl.present()
     })
   }
 
-  openModalCreate(item:string){
+  openModalCreate(item: string) {
     this.modalCtrl.create({
       component: ModalResourcesCreateComponent,
-      componentProps: {item : item}
+      componentProps: { item: item }
     }).then(modalEl => {
       modalEl.present()
     })
@@ -55,7 +61,9 @@ export class LivresAptitudePage implements OnInit {
   }
 
   ngOnDestroy(): void {
-    if(this.connectedUserSubscription)
+    if (this.connectedUserSubscription)
       this.connectedUserSubscription.unsubscribe()
+    if (this.updateSubscription)
+      this.updateSubscription.unsubscribe()
   }
 }
