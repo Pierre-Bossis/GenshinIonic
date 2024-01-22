@@ -7,11 +7,13 @@ import { ModalConstellationsAptitudesComponent } from './modals/modal-constellat
 import { ModalArtefactsComponent } from './modals/modal-artefacts/modal-artefacts.component';
 import { ModalResourcesCreateComponent } from './modals/modal-resources-create/modal-resources-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalArmesCreateComponent } from './modals/modal-armes-create/modal-armes-create.component';
 
 
 
 @NgModule({
-  declarations: [StarPipe,ModalBasicComponent,ModalConstellationsAptitudesComponent,ModalArtefactsComponent,ModalResourcesCreateComponent],
+  declarations: [StarPipe,ModalBasicComponent,ModalConstellationsAptitudesComponent,ModalArtefactsComponent,ModalResourcesCreateComponent,
+                 ModalArmesCreateComponent],
   imports: [
     CommonModule,
     IonicModule,

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LivresAptitude } from '../_models/livres-aptitude';
+import { LivresAptitude, LivresAptitudeForm } from '../_models/livres-aptitude';
 import { UploadService } from './upload.service';
 
 @Injectable({
@@ -26,7 +26,7 @@ private listeLivresSubject = new Subject<void>();
     return this.http.get<LivresAptitude>(this.url + "livresaptitude/" + id)
   }
 
-  create(livre: LivresAptitude, fileToUpload: File) {
+  create(livre: LivresAptitudeForm, fileToUpload: File) {
     const newLivre = this.upload.upload(fileToUpload);
   
     newLivre.append('Nom', livre.nom);

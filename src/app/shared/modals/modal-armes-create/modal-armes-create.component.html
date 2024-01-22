@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nouvelle Arme</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <form [formGroup]="createArmesFormGroup" (ngSubmit)="onSubmit()">
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Nom" labelPlacement="floating" formControlName="nom" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Description" labelPlacement="floating" formControlName="description" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Type d'arme" formControlName="typeArme">
+              <ion-select-option value="Epée">Epée</ion-select-option>
+              <ion-select-option value="Claymore">Claymore</ion-select-option>
+              <ion-select-option value="Arc">Arc</ion-select-option>
+              <ion-select-option value="Lance">Lance</ion-select-option>
+              <ion-select-option value="Catalyseur">Catalyseur</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Rareté" formControlName="rarete">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Statistique principale" formControlName="nomStatPrincipale">
+              <ion-select-option value="ATQ %">ATQ %</ion-select-option>
+              <ion-select-option value="Defense %">Defense %</ion-select-option>
+              <ion-select-option value="Degats physique %">Degats physique %</ion-select-option>
+              <ion-select-option value="Taux Critique %">Taux Critique %</ion-select-option>
+              <ion-select-option value="Degats Critique %">Degats Critique %</ion-select-option>
+              <ion-select-option value="Recharge Energie %">Recharge Energie %</ion-select-option>
+              <ion-select-option value="Maitrîse Elementaire">Maitrîse Elementaire</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Valeur statistique principale" labelPlacement="floating" formControlName="valeurStatPrincipale" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Effet passif" labelPlacement="floating" formControlName="effetPassif" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Attaque de base" labelPlacement="floating" formControlName="atqBase" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select multiple="" label="Matériaux elevation d'armes(multiple)" formControlName="selectedMats">
+              <ion-select-option *ngFor="let mat of matListe" [value]="mat.id">{{ mat.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select multiple="" label="Matériaux amelioration personnages et armes(multiple)" formControlName="selectedMatsAmelio">
+              <ion-select-option *ngFor="let mat of matAmelioListe" [value]="mat.id">{{ mat.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <input label="Icone" id="IconeFile" type="file" (change)="loadIconeFile($event)">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <input label="Image" id="ImageFile" type="file" (change)="loadImageFile($event)">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-lg="8" offset-lg="2">
+          <ion-button expand="full" type="submit" [disabled]="!createArmesFormGroup.valid" expand="block">Créer</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+  
+
+</ion-content>

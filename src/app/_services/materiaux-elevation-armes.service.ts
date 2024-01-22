@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MateriauxElevationArmes } from '../_models/materiaux-elevation-armes';
+import { MateriauxElevationArmes, MateriauxElevationArmesForm } from '../_models/materiaux-elevation-armes';
 import { UploadService } from './upload.service';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class MateriauxElevationArmesService {
     return this.http.get<any>(this.url + "materiauxelevationarmes/" + name)
   }
 
-  create(materiau: MateriauxElevationArmes, fileToUpload: File) {
+  create(materiau: MateriauxElevationArmesForm, fileToUpload: File) {
     const newMat = this.upload.upload(fileToUpload);
   
     newMat.append('Nom', materiau.nom);

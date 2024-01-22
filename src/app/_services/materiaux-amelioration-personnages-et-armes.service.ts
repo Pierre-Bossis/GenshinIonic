@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MateriauxAmeliorationPersonnagesEtArmes } from '../_models/materiaux-amelioration-personnages-et-armes';
+import { MateriauxAmeliorationPersonnagesEtArmes, MateriauxAmeliorationPersonnagesEtArmesForm } from '../_models/materiaux-amelioration-personnages-et-armes';
 import { UploadService } from './upload.service';
 
 @Injectable({
@@ -25,7 +25,7 @@ private listeMateriauxAmelioPersosArmesSubject = new Subject<void>();
     return this.http.get<MateriauxAmeliorationPersonnagesEtArmes>(this.url + "materiauxameliorationpersonnagesetarmes/" + id)
   }
 
-  create(materiau: MateriauxAmeliorationPersonnagesEtArmes, fileToUpload: File) {
+  create(materiau: MateriauxAmeliorationPersonnagesEtArmesForm, fileToUpload: File) {
     const newMat = this.upload.upload(fileToUpload);
   
     newMat.append('Nom', materiau.nom);

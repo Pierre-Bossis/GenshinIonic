@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
-import { MateriauxAmeliorationPersonnages } from '../_models/materiaux-amelioration-personnages';
+import { MateriauxAmeliorationPersonnages, MateriauxAmeliorationPersonnagesForm } from '../_models/materiaux-amelioration-personnages';
 import { environment } from 'src/environments/environment';
 import { UploadService } from './upload.service';
 
@@ -26,7 +26,7 @@ private listeMateriauxAmelioPersosSubject = new Subject<void>();
     return this.http.get<MateriauxAmeliorationPersonnages>(this.url + "materiauxameliorationpersonnages/" + id)
   }
 
-  create(materiau: MateriauxAmeliorationPersonnages, fileToUpload: File) {
+  create(materiau: MateriauxAmeliorationPersonnagesForm, fileToUpload: File) {
     const newMat = this.upload.upload(fileToUpload);
   
     newMat.append('Nom', materiau.nom);

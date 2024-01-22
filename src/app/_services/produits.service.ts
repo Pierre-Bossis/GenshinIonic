@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Produits } from '../_models/produits';
+import { Produits, ProduitsForm } from '../_models/produits';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { UploadService } from './upload.service';
 
@@ -25,7 +25,7 @@ private listeProduitsSubject = new Subject<void>();
     return this.http.get<Produits>(this.url + "produits/" + id)
   }
 
-  create(materiau: Produits, fileToUpload: File) {
+  create(materiau: ProduitsForm, fileToUpload: File) {
     const newMat = this.upload.upload(fileToUpload);
   
     newMat.append('Nom', materiau.nom);
