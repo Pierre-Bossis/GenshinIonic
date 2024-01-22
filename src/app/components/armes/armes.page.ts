@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController, SegmentCustomEvent } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Armes } from 'src/app/_models/arme';
+import { Armes, ArmesList } from 'src/app/_models/arme';
 import { ConnectedUser } from 'src/app/_models/user';
 import { ArmesService } from 'src/app/_services/armes.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -14,8 +14,8 @@ import { ModalArmesCreateComponent } from 'src/app/shared/modals/modal-armes-cre
   styleUrls: ['./armes.page.scss'],
 })
 export class ArmesPage implements OnInit, OnDestroy {
-  armes: Armes[] = []
-  armesFiltered: Armes[] = []
+  armes: ArmesList[] = []
+  armesFiltered: ArmesList[] = []
   connectedUser!: ConnectedUser | undefined
   connectedUserSubscription!: Subscription
   updateSubscription!: Subscription
@@ -52,6 +52,8 @@ export class ArmesPage implements OnInit, OnDestroy {
       this.armesService.getAll().subscribe((data) => {
         this.armes = data
         this.armesFiltered = this.armes
+        console.log(data);
+        
         loadlingEl.dismiss()
       });
     })

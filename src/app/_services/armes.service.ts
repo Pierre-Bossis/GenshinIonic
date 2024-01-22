@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Armes, ArmesForm } from '../_models/arme';
+import { Armes, ArmesForm, ArmesList } from '../_models/arme';
 import { UploadService } from './upload.service';
 
 @Injectable({
@@ -13,8 +13,8 @@ url:string = environment.apiurl
 private listeArmesSubject = new Subject<void>();
   constructor(private http:HttpClient,private upload:UploadService) { }
 
-  getAll():Observable<Armes[]>{
-    return this.http.get<Armes[]>(this.url + "armes")
+  getAll():Observable<ArmesList[]>{
+    return this.http.get<ArmesList[]>(this.url + "armes")
   }
 
   getByName(name:string):Observable<any>{    

@@ -12,6 +12,18 @@ export interface Armes {
     rarete:number
 }
 
+export interface ArmesList {
+    id:number
+    nom:string
+    typeArme:string
+    image:string
+    nomStatPrincipale:string
+    valeurStatPrincipale:number
+    effetPassif:string
+    atqBase:number
+    rarete:number
+}
+
 export interface ArmesForm {
     nom:string
     typeArme:string
