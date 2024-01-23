@@ -17,12 +17,16 @@
     <ion-spinner name="dots" color="primary"></ion-spinner>
   </div>
 
-  <ion-list>
-    <ion-item (click)="openModal(artefact.nomSet)" detail button *ngFor="let artefact of artefacts">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="'data:image/jpeg;base64,' + artefact.imagePath"></ion-img>
-      </ion-thumbnail>
-      <ion-label>{{ artefact.nomSet }}</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let artefact of artefacts" size-xs="12" size-xl="4" class="ion-align-self-center custom-list">
+          <ion-item (click)="openModal(artefact.nomSet)" class="custom-item" button detail>
+            <ion-img [src]="'data:image/jpeg;base64,' + artefact.imagePath"></ion-img>
+            <ion-label>
+              <ion-text>{{artefact.nom}}</ion-text>
+            </ion-label>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

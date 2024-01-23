@@ -30,7 +30,6 @@ export class ArtefactsService {
     newArtefact.append('Bonus2Pieces',artefact.bonus2Pieces)
     newArtefact.append('Bonus4Pieces',artefact.bonus4Pieces)
     newArtefact.append('Source',artefact.source)
-    console.log("test");
     
     this.client.post(this.url + 'artefacts/create', newArtefact).pipe(
       switchMap(() => this.getAll().pipe(take(1))),

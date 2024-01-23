@@ -54,3 +54,7 @@ ion-spinner {
       opacity: 1;
     }
   }
+
+  ion-item{
+    --border-color: var(--ion-color-light-shade)
+  }

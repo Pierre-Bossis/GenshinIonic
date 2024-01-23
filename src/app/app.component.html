@@ -9,28 +9,28 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="">
+          <ion-item lines="none" routerLink="">
             <ion-icon name="home" slot="start"></ion-icon>
             <ion-label>Home</ion-label>
           </ion-item>
         </ion-menu-toggle>
   
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="armes">
+          <ion-item lines="none" routerLink="armes">
             <ion-icon name="construct-outline" slot="start"></ion-icon>
             <ion-label>Armes</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="personnages">
+          <ion-item lines="none" routerLink="personnages">
             <ion-icon name="people-circle-outline" slot="start"></ion-icon>
             <ion-label>Personnages</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="artefacts">
+          <ion-item lines="none" routerLink="artefacts">
             <ion-icon name="flower-outline" slot="start"></ion-icon>
             <ion-label>Artefacts</ion-label>
           </ion-item>
@@ -75,25 +75,25 @@
         </ion-list>
 
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="regions">
+          <ion-item lines="none" routerLink="regions">
             <ion-icon name="map-outline" slot="start"></ion-icon>
             <ion-label>Regions</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle contentId="m1">
-          <ion-item routerLink="jukebox">
+          <ion-item lines="none" routerLink="jukebox">
             <ion-icon name="musical-notes-outline" slot="start"></ion-icon>
             <ion-label>Jukebox</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle contentId="m1" *ngIf="!connectedUser">
-          <ion-item routerLink="login">
+          <ion-item lines="none" routerLink="login">
             <ion-icon name="log-in-outline" slot="start"></ion-icon>
             <ion-label>Login</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle contentId="m1" *ngIf="connectedUser">
-          <ion-item (click)="logout()" button>
+          <ion-item lines="none" (click)="logout()" button>
             <ion-icon name="log-out-outline" slot="start"></ion-icon>
             <ion-label>Logout</ion-label>
           </ion-item>
