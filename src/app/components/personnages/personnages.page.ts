@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, SegmentCustomEvent } from '@ionic/angular';
+import { LoadingController, ModalController, SegmentCustomEvent } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Personnages, PersonnagesList } from 'src/app/_models/personnages';
 import { ConnectedUser } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PersonnagesService } from 'src/app/_services/personnages.service';
+import { ModalPersonnagesCreateComponent } from 'src/app/shared/modals/modal-personnages-create/modal-personnages-create.component';
 
 @Component({
   selector: 'app-personnages',
@@ -18,7 +19,7 @@ personnagesFiltered:PersonnagesList[] = []
 connectedUser!:ConnectedUser | undefined
 connectedUserSubscription!:Subscription
 
-  constructor(private personnagesService:PersonnagesService,private  loadingCtrl:LoadingController, private router:Router, private authService:AuthService) { }
+  constructor(private personnagesService:PersonnagesService,private modalCtrl:ModalController,private  loadingCtrl:LoadingController, private router:Router, private authService:AuthService) { }
   ngOnInit() {
     this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
@@ -49,6 +50,14 @@ connectedUserSubscription!:Subscription
 
   onDetail(nom:string){    
     this.router.navigateByUrl('personnages/detail/' + nom);
+  }
+
+  openModalCreate(){
+    this.modalCtrl.create({
+      component: ModalPersonnagesCreateComponent
+    }).then(modalEl => {
+      modalEl.present()
+    })
   }
 
   logout(){

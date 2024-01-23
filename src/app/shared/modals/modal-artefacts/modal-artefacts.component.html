@@ -32,5 +32,10 @@
     </ion-thumbnail>
   </ion-item>
 
+  <div *ngIf="artefacts.length > 0">
+    <h4 class="border-bottom">Donjon</h4>
+    <ion-text color="light">{{artefacts[0].source}}</ion-text>
+  </div>
+
   <ion-button class="ion-text-center mt" fill="outline" expand="block" (click)="onCancel()">Retour</ion-button>
 </ion-content>
