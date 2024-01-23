@@ -18,7 +18,7 @@ arme!:Armes
 matsElevation:MateriauxElevationArmes[] = []
 matsAmelioration:MateriauxAmeliorationPersonnagesEtArmes[] = []
 spinner:boolean = true
-selectedSegment: string = 'detail';
+selectedSegment: string = 'materiauxElevation';
   constructor(private armesService:ArmesService,private activatedRoute:ActivatedRoute, private modalCtrl:ModalController) { }
 
   ngOnInit() {
