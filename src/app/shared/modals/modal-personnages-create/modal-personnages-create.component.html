@@ -9,6 +9,182 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding ion-text-center">
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <form [formGroup]="personnagesFormGroup" (ngSubmit)="onSubmit()">
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Nom" labelPlacement="floating" formControlName="nom" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Oeil Divin" formControlName="oeilDivin">
+              <ion-select-option value="Pyro">Pyro</ion-select-option>
+              <ion-select-option value="Hydro">Hydro</ion-select-option>
+              <ion-select-option value="Anemo">Anemo</ion-select-option>
+              <ion-select-option value="Electro">Electro</ion-select-option>
+              <ion-select-option value="Dendro">Dendro</ion-select-option>
+              <ion-select-option value="Cryo">Cryo</ion-select-option>
+              <ion-select-option value="Geo">Geo</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Type d'arme" formControlName="typeArme">
+              <ion-select-option value="Epée">Epée</ion-select-option>
+              <ion-select-option value="Claymore">Claymore</ion-select-option>
+              <ion-select-option value="Arc">Arc</ion-select-option>
+              <ion-select-option value="Lance">Lance</ion-select-option>
+              <ion-select-option value="Catalyseur">Catalyseur</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Lore" labelPlacement="floating" formControlName="lore" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Nationalité" formControlName="nationalite">
+              <ion-select-option value="Mondstadt">Mondstadt</ion-select-option>
+              <ion-select-option value="Liyue">Liyue</ion-select-option>
+              <ion-select-option value="Inazuma">Inazuma</ion-select-option>
+              <ion-select-option value="Sumeru">Sumeru</ion-select-option>
+              <ion-select-option value="Fontaine">Fontaine</ion-select-option>
+              <ion-select-option value="Natlan">Natlan</ion-select-option>
+              <ion-select-option value="Snezhnaya">Snezhnaya</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-input label="Lien Trailer Youtube" labelPlacement="floating" formControlName="trailerYT" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-datetime value="2020-09-28T00:00:00" min="2020-09-28T00:00:00" max="date"
+             label="Date de sortie" labelPlacement="floating" formControlName="dateSortie"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Arme signature (optionnel)" formControlName="armeId">
+              <ion-select-option *ngFor="let arme of armesListe" [value]="arme.id">{{ arme.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Materiaux d'amélioration Personnage" formControlName="materiauxAmeliorationPersonnageId">
+              <ion-select-option *ngFor="let mat of matAmeliorationPersonnagesListe" [value]="mat.id">{{ mat.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Produit d'elevation" formControlName="produitId">
+              <ion-select-option *ngFor="let produit of produitsListe" [value]="produit.id">{{ produit.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select label="Rareté" formControlName="rarete">
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select multiple="" label="Livres d'aptitude(multiple)" formControlName="selectedLivres">
+              <ion-select-option *ngFor="let livre of LivresAptitudeListe" [value]="livre.id">{{ livre.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select multiple="" label="Matériaux d'elevation Personnages(multiple)" formControlName="selectedMatsElevation">
+              <ion-select-option *ngFor="let mat of matsElevationPersonnages" [value]="mat.id">{{ mat.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <ion-select multiple="" label="Matériaux d'amelioration Personnages et Armes(multiple)" formControlName="selectedMatsAmelioPersosArmes">
+              <ion-select-option *ngFor="let mat of matsAmelioPersosArmes" [value]="mat.id">{{ mat.nom }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <input label="Icone" id="IconeFile" type="file" (change)="loadIconeFile($event)">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3" size-lg="8" offset-lg="2">
+          <ion-item>
+            <input label="Image" id="ImageFile" type="file" (change)="loadImageFile($event)">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-lg="8" offset-lg="2">
+          <ion-button expand="full" type="submit" [disabled]="!personnagesFormGroup.valid" expand="block">Créer</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
 
 </ion-content>

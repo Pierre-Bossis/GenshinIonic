@@ -18,13 +18,19 @@ personnages:PersonnagesList[] = []
 personnagesFiltered:PersonnagesList[] = []
 connectedUser!:ConnectedUser | undefined
 connectedUserSubscription!:Subscription
+updateSubscription!:Subscription
 
   constructor(private personnagesService:PersonnagesService,private modalCtrl:ModalController,private  loadingCtrl:LoadingController, private router:Router, private authService:AuthService) { }
   ngOnInit() {
-    this.loadingData()
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser;
-    });    
+    })
+
+    this.loadingData()
+    
+    this.updateSubscription = this.personnagesService.listePersonnagesUpdated$().subscribe(() => {
+      this.loadingData()
+    })
   }
 
   segmentChanged(element:SegmentCustomEvent){
@@ -42,7 +48,6 @@ connectedUserSubscription!:Subscription
       this.personnagesService.getAll().subscribe((data) => {
         this.personnages = data
         this.personnagesFiltered = this.personnages
-        console.log(this.personnages);
         loadlingEl.dismiss()
       });
     })

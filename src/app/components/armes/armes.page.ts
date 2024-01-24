@@ -30,7 +30,7 @@ export class ArmesPage implements OnInit, OnDestroy {
 
     this.updateSubscription = this.armesService.listeArmesUpdated$().subscribe(() => {
       this.loadingData()
-    });
+    })
   }
 
   onDetail(nom: string) {
