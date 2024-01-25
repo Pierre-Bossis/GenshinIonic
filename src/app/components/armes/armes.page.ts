@@ -51,9 +51,7 @@ export class ArmesPage implements OnInit, OnDestroy {
       loadlingEl.present()
       this.armesService.getAll().subscribe((data) => {
         this.armes = data
-        this.armesFiltered = this.armes
-        console.log(data);
-        
+        this.armesFiltered = this.armes        
         loadlingEl.dismiss()
       });
     })

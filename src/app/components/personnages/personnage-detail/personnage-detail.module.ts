@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,6 +8,8 @@ import { PersonnageDetailPageRoutingModule } from './personnage-detail-routing.m
 
 import { PersonnageDetailPage } from './personnage-detail.page';
 import { SharedModule } from 'src/app/shared/shared-module.module';
+import { ConstellationsCreateComponent } from './constellations-create/constellations-create.component';
+import { AptitudesCreateComponent } from './aptitudes-create/aptitudes-create.component';
 
 @NgModule({
   imports: [
@@ -15,8 +17,9 @@ import { SharedModule } from 'src/app/shared/shared-module.module';
     FormsModule,
     IonicModule,
     SharedModule,
+    ReactiveFormsModule,
     PersonnageDetailPageRoutingModule
   ],
-  declarations: [PersonnageDetailPage]
+  declarations: [PersonnageDetailPage,ConstellationsCreateComponent,AptitudesCreateComponent]
 })
 export class PersonnageDetailPageModule {}

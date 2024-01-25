@@ -38,8 +38,9 @@ trailer!: SafeResourceUrl;
   arme?: Armes
   produit!: Produits
   mat!: MateriauxAmeliorationPersonnages
-   constellations: Constellations[] = []
-   aptitudes: Aptitudes[] = []
+  constellations: Constellations[] = []
+  aptitudes: Aptitudes[] = []
+  formDisplay:boolean = false
 
   //many to many
   livresAptitude: LivresAptitude[] = []
@@ -112,12 +113,12 @@ trailer!: SafeResourceUrl;
 
   refreshAptitudesList() {
     this.personnagesService.getAllAptitudes(this.personnage.id).subscribe((data) => this.aptitudes = data)
-    //this.formDisplay = false
+    this.formDisplay = false
   }
 
   refreshConstellationsList() {
     this.personnagesService.getAllConstellations(this.personnage.id).subscribe((data) => this.constellations = data)
-    //this.formDisplay = false
+    this.formDisplay = false
   }
 
 }

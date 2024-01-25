@@ -159,7 +159,18 @@
   <ion-row class="ion-justify-content-center">
     <ion-col size-xs="12" size-xl="8">
       <h4>Constellations</h4>
-      <ion-list class="ion-align-self-center custom-list">
+
+      <div *ngIf="constellations.length < 7">
+        <div *ngIf="!formDisplay">
+          <ion-button  class="ion-text-center" fill="outline" color="primary" expand="block" (click)="formDisplay = true">Ajouter</ion-button>
+        </div>
+        <div *ngIf="formDisplay">
+          <app-constellations-create [personnageId]="personnage.id" (constellationCreated)="refreshConstellationsList()"></app-constellations-create>
+          <ion-button  class="ion-text-center" fill="outline" color="primary" (click)="formDisplay = false">Fermer</ion-button>
+        </div>
+      </div>
+        
+      <ion-list *ngIf="constellations.length > 0" class="ion-align-self-center custom-list">
         <ion-item color="dark" (click)="openModalConstellationsAptitudes(constellation)" *ngFor="let constellation of constellations" class="custom-item" button detail>
           <ion-img [src]="'data:image/jpeg;base64,' + constellation.icone"></ion-img>
           <ion-label>
@@ -167,6 +178,7 @@
           </ion-label>
         </ion-item>
       </ion-list>
+
     </ion-col>
   </ion-row>
 </ion-grid>
@@ -176,7 +188,18 @@
   <ion-row class="ion-justify-content-center">
     <ion-col size-xs="12" size-xl="8">
       <h4>Aptitudes</h4>
-      <ion-list class="ion-align-self-center custom-list">
+
+      <div *ngIf="aptitudes.length < 7">
+        <div *ngIf="!formDisplay">
+          <ion-button  class="ion-text-center" fill="outline" color="primary" expand="block" (click)="formDisplay = true">Ajouter</ion-button>
+        </div>
+        <div *ngIf="formDisplay">
+          <app-aptitudes-create [personnageId]="personnage.id" (aptitudeCreated)="refreshAptitudesList()"></app-aptitudes-create>
+          <ion-button  class="ion-text-center" fill="outline" color="primary" (click)="formDisplay = false">Fermer</ion-button>
+        </div>
+      </div>
+
+      <ion-list *ngIf="aptitudes.length > 0" class="ion-align-self-center custom-list">
         <ion-item color="dark" (click)="openModalConstellationsAptitudes(aptitude)" *ngFor="let aptitude of aptitudes" class="custom-item" button detail>
           <ion-img [src]="'data:image/jpeg;base64,' + aptitude.icone"></ion-img>
           <ion-label>
@@ -184,6 +207,7 @@
           </ion-label>
         </ion-item>
       </ion-list>
+
     </ion-col>
   </ion-row>
 </ion-grid>

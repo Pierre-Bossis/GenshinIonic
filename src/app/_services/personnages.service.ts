@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Personnages, PersonnagesForm, PersonnagesList } from '../_models/personnages';
-import { Constellations } from '../_models/constellations';
-import { Aptitudes } from '../_models/aptitudes';
+import { Constellations, ConstellationsForm } from '../_models/constellations';
+import { Aptitudes, AptitudesForm } from '../_models/aptitudes';
 import { UploadService } from './upload.service';
 
 @Injectable({
@@ -70,8 +70,30 @@ private listePersonnagesSubject = new Subject<void>();
     return this.http.get<Constellations[]>(this.url+"personnages/"+id+"/constellations")
   }
 
+  createConstellation(constellation:ConstellationsForm,icone:File){
+    const newConstellation = this.upload.upload(icone)
+
+    newConstellation.append('Nom',constellation.nom)
+    newConstellation.append('Description',constellation.description)
+
+    newConstellation.append('Personnage_Id',constellation.personnage_Id.toString())
+    
+    return this.http.post(this.url+"personnages/create/constellation",newConstellation)
+  }
+
   // aptitudes
   getAllAptitudes(id:number):Observable<Aptitudes[]>{
     return this.http.get<Aptitudes[]>(this.url+"personnages/"+id+"/aptitudes")
+  }
+
+  createAptitude(aptitude:AptitudesForm,icone:File){
+    const newAptitude = this.upload.upload(icone)
+
+    newAptitude.append('Nom',aptitude.nom)
+    newAptitude.append('Description',aptitude.description)
+
+    newAptitude.append('Personnage_Id',aptitude.personnage_Id.toString())
+    
+    return this.http.post(this.url+"personnages/create/aptitude",newAptitude)
   }
 }
