@@ -160,7 +160,7 @@
     <ion-col size-xs="12" size-xl="8">
       <h4>Constellations</h4>
 
-      <div *ngIf="constellations.length < 7">
+      <div *ngIf="constellations.length < 6 && connectedUser?.role === 'Admin'">
         <div *ngIf="!formDisplay">
           <ion-button  class="ion-text-center" fill="outline" color="primary" expand="block" (click)="formDisplay = true">Ajouter</ion-button>
         </div>
@@ -189,7 +189,7 @@
     <ion-col size-xs="12" size-xl="8">
       <h4>Aptitudes</h4>
 
-      <div *ngIf="aptitudes.length < 7">
+      <div *ngIf="aptitudes.length < 6 && connectedUser?.role === 'Admin'">
         <div *ngIf="!formDisplay">
           <ion-button  class="ion-text-center" fill="outline" color="primary" expand="block" (click)="formDisplay = true">Ajouter</ion-button>
         </div>

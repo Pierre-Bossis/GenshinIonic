@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, SegmentCustomEvent } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { Aptitudes } from 'src/app/_models/aptitudes';
 import { Armes } from 'src/app/_models/arme';
 import { Constellations } from 'src/app/_models/constellations';
@@ -11,7 +12,9 @@ import { MateriauxAmeliorationPersonnagesEtArmes } from 'src/app/_models/materia
 import { MateriauxElevationPersonnages } from 'src/app/_models/materiaux-elevation-personnages';
 import { Personnages } from 'src/app/_models/personnages';
 import { Produits } from 'src/app/_models/produits';
+import { ConnectedUser } from 'src/app/_models/user';
 import { ArmesService } from 'src/app/_services/armes.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { MateriauxAmeliorationPersonnagesService } from 'src/app/_services/materiaux-amelioration-personnages.service';
 import { PersonnagesService } from 'src/app/_services/personnages.service';
 import { ProduitsService } from 'src/app/_services/produits.service';
@@ -23,9 +26,11 @@ import { ModalConstellationsAptitudesComponent } from 'src/app/shared/modals/mod
   templateUrl: './personnage-detail.page.html',
   styleUrls: ['./personnage-detail.page.scss'],
 })
-export class PersonnageDetailPage implements OnInit {
+export class PersonnageDetailPage implements OnInit, OnDestroy {
+  connectedUser!:ConnectedUser | undefined
+connectedUserSubscription!:Subscription
 
-  constructor(private personnagesService:PersonnagesService,private activatedRoute:ActivatedRoute,private produitsService:ProduitsService,
+  constructor(private authService:AuthService,private personnagesService:PersonnagesService,private activatedRoute:ActivatedRoute,private produitsService:ProduitsService,
     private armesService:ArmesService,private materiauxAmeliorationPersonnagesService:MateriauxAmeliorationPersonnagesService,
     private router:Router,private modalCtrl:ModalController) { }
 personnage!:Personnages
@@ -48,6 +53,12 @@ trailer!: SafeResourceUrl;
   materiauxAmelioPersosArmes: MateriauxAmeliorationPersonnagesEtArmes[] = []
 
   ngOnInit(): void {
+    this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
+      this.connectedUser = connectedUser;
+      console.log(this.connectedUser);
+      
+    })
+
     this.activatedRoute.params.subscribe(params => {
       this.personnageName = params['nom'];
       if(this.personnageName != null)
@@ -121,4 +132,9 @@ trailer!: SafeResourceUrl;
     this.formDisplay = false
   }
 
+  ngOnDestroy() {
+    if (this.connectedUserSubscription) {
+      this.connectedUserSubscription.unsubscribe();
+    }
+  }
 }
