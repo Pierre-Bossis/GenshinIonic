@@ -42,7 +42,7 @@ export class JukeboxPage implements OnInit{
   }
 
   ngOnInit() {
-    this.startTimeInterval();
+    this.startTimeInterval()
     setInterval(() => {
       this.updateProgress();
     }, 1000);
@@ -61,8 +61,8 @@ export class JukeboxPage implements OnInit{
       const currentSeconds = Math.floor(this.player.getCurrentTime());
       const minutes = Math.floor(currentSeconds / 60);
       const seconds = currentSeconds % 60;
-      const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-      this.currentTime = `${minutes}:${formattedSeconds}`;
+      const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
+      this.currentTime = `${minutes}:${formattedSeconds}`      
     }
   }
 
@@ -119,10 +119,10 @@ previous() {
   //pause ou reprendre
   pause() {
     if (!this.isPaused) {
-      this.player.pauseVideo();
+      this.player.pauseVideo()
       this.isPaused = true;
     } else {
-      this.player.playVideo();
+      this.player.playVideo()
       this.isPaused = false;
     }
   }
@@ -137,7 +137,7 @@ previous() {
   }
 
   //play la vidéo dés qu'on a clické sur suivant ou sur une piste précise
-  private playAuto() {
+  playAuto() {
     setTimeout(() => {
       if (this.player && this.player.playVideo) {        
         this.player.playVideo();

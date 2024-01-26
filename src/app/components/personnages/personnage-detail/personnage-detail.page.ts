@@ -55,8 +55,6 @@ trailer!: SafeResourceUrl;
   ngOnInit(): void {
     this.connectedUserSubscription = this.authService.connectedUserSubject.subscribe((connectedUser) => {
       this.connectedUser = connectedUser;
-      console.log(this.connectedUser);
-      
     })
 
     this.activatedRoute.params.subscribe(params => {
@@ -79,7 +77,11 @@ trailer!: SafeResourceUrl;
         this.produitsService.getById(data.personnage.produit_Id).subscribe((dataProduit) => this.produit = dataProduit)
         this.materiauxAmeliorationPersonnagesService.getById(data.personnage.materiauxAmeliorationPersonnage_Id).subscribe((dataMat) => this.mat = dataMat)
 
-        //this.trailer = this.sanitizer.bypassSecurityTrustResourceUrl(this.personnage.trailerYT);
+        //youtube
+        const url = this.personnage.trailerYT;
+        const videoId = url.split('/').pop()?.split('?')[0];
+        if(videoId)
+          this.personnage.trailerYT = videoId
 
          this.refreshConstellationsList()
          this.refreshAptitudesList()

@@ -10,6 +10,7 @@ import { PersonnageDetailPage } from './personnage-detail.page';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 import { ConstellationsCreateComponent } from './constellations-create/constellations-create.component';
 import { AptitudesCreateComponent } from './aptitudes-create/aptitudes-create.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AptitudesCreateComponent } from './aptitudes-create/aptitudes-create.co
     FormsModule,
     IonicModule,
     SharedModule,
+    YouTubePlayerModule,
     ReactiveFormsModule,
     PersonnageDetailPageRoutingModule
   ],

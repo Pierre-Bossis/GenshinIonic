@@ -212,11 +212,11 @@
   </ion-row>
 </ion-grid>
 
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-iframe [src]="trailer" frameborder="0" allowfullscreen></ion-iframe>
+  <ion-grid style="display: flex; justify-content: center;">
+    <ion-row  class="ion-justify-content-center">
+      <ion-col size-lg="8">
+        <youtube-player  [videoId]="personnage.trailerYT" suggestedQuality="highres" [height]="200" [width]="350"></youtube-player>
       </ion-col>
     </ion-row>
-  </ion-grid> -->
+  </ion-grid>
 </ion-content>

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalArmesCreateComponent } from './modals/modal-armes-create/modal-armes-create.component';
 import { ModalPersonnagesCreateComponent } from './modals/modal-personnages-create/modal-personnages-create.component';
 import { ModalArtefactsCreateComponent } from './modals/modal-artefacts-create/modal-artefacts-create.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 
@@ -19,6 +20,7 @@ import { ModalArtefactsCreateComponent } from './modals/modal-artefacts-create/m
   imports: [
     CommonModule,
     IonicModule,
+    YouTubePlayerModule,
     ReactiveFormsModule
   ],
   exports: [
