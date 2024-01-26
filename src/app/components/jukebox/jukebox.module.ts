@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { JukeboxPageRoutingModule } from './jukebox-routing.module';
 
 import { JukeboxPage } from './jukebox.page';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    YouTubePlayerModule,
     JukeboxPageRoutingModule
   ],
   declarations: [JukeboxPage]

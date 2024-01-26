@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { IonItemSliding, ItemSlidingCustomEvent, LoadingController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Produits } from 'src/app/_models/produits';
 import { ConnectedUser } from 'src/app/_models/user';
@@ -58,6 +58,10 @@ export class ProduitsPage implements OnInit, OnDestroy {
       this.produits = data
       this.spinner = false
     });
+  }
+
+  sliding(slidingProduits:IonItemSliding){
+    slidingProduits.close()
   }
 
   ngOnDestroy(): void {
