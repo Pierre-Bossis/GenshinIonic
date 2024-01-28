@@ -25,6 +25,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    background-color: #20374c;
   }
   
   .track-button:hover {
@@ -48,16 +49,31 @@
     padding: 12px 24px;
     font-size: 16px;
     border: none;
-    background-color: #5e5e5e;
+    background-color: #20374c;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 0 8px;
   
-    min-width: 100px;
-    min-height: 40px;
+    min-width: 80px;
+    min-height: 30px;
   }
+
+  .navbutton2 {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    background-color: #20374c;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 8px;
+    width: 25px;
+    height: 55px;
+}
+
   
   
   

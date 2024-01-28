@@ -10,23 +10,27 @@
 <ion-content [fullscreen]="true" class="ion-text-center">
   <ion-row class="ion-justify-content-center fade-in">
     <ion-col>
-      <div class="jukebox text-center bg-dark">
-        <h1>Jukebox</h1>
-        <div class="d-md-flex justify-content-center">
-          <div class="ml-md-auto">
-            <img src="../../../assets/music-beidou.png" width="200" height="200" class="img-fluid">
-          </div>
-          <div class="align-self-center" style="margin-bottom: 20px;">
-            <button (click)="previous()" class="navigation-button mb-md-2 controls">Précédent</button>
-            <button (click)="next()" class="navigation-button mb-md-2 controls">Suivant</button><br/><br/>
-            <button (click)="seekBackward()" class="navigation-button mb-md-2 controls">⏪</button>
-            <button (click)="pause()" *ngIf="!isPaused" class="navigation-button controls">❚❚</button>
-            <button (click)="pause()" *ngIf="isPaused" class="navigation-button controls">⏵</button>
-            <button (click)="seekForward()" class="navigation-button mb-md-2 controls">⏩</button>
+      <div class="jukebox bg-dark">
+        <div class="ion-justify-content-center">
+          <ion-row>
+            <ion-col size-md="3" offset-md="3">
+              <img src="../../../assets/music-beidou.png" width="200" height="200" class="img-fluid">
+            </ion-col>
+            <ion-col size-md="3" offset-md="">
+              <img src="../../../assets/music-venti.png" width="200" height="200" class="img-fluid">
+            </ion-col>
+          </ion-row>
+          <div class="align-self-center" style="margin-bottom: 15px;">
+            <ion-icon (click)="previous()" name="play-skip-back-outline" class="navigation-button controls" ></ion-icon>
+            <ion-icon (click)="next()" name="play-skip-forward-outline" class="navigation-button controls"></ion-icon><br/><br/>
+            <ion-icon (click)="seekBackward()" name="play-back-outline" class="navbutton2 controls"></ion-icon>
+            <ion-icon (click)="pause()" *ngIf="!isPaused" name="pause-outline" class="navbutton2 controls"></ion-icon>
+            <ion-icon (click)="pause()" *ngIf="isPaused" class="navbutton2 controls" slot="icon-only" name="play-outline" button></ion-icon>
+            <ion-icon (click)="seekForward()" name="play-forward-outline" class="navbutton2 controls"></ion-icon>
           </div>
         </div>
         {{nameCurrentTrack}}
-        <div class="navigation-buttons text-center" style="margin-bottom: 40px;">
+        <div class="navigation-buttons text-center" style="margin-bottom: 15px;">
           <span>{{ currentTime }}</span>/<span>{{ getTotalDuration() }}</span>
         </div>
         <ion-row class="ion-justify-content-center">
@@ -39,7 +43,7 @@
           <ion-col size-md="6">
               <ion-list style="height: 250px; overflow-y: auto;">
                 <ng-container *ngFor="let track of audioLinks">
-                  <button style="margin-bottom: 10px;" (click)="changeTrack(track.id)" class="track-button btn-block btn-secondary"
+                  <button style="margin-bottom: 10px;" (click)="changeTrack(track.id)" class="track-button btn-block"
                     [ngClass]="{'active': currentTrack === track.id}">{{ track.titre }}</button>
                 </ng-container>
               </ion-list>
