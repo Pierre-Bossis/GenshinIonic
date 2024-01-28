@@ -31,6 +31,14 @@ export class JukeboxPage implements OnInit{
   currentTime: string = '0:00'
   totalTime: string = '0:00'
   @ViewChild('player') player!: YouTubePlayer; 
+
+  ngOnInit(): void {    
+    this.startTimeInterval()
+    setInterval(() => {
+      this.updateProgress();
+    }, 1000);
+    this.isPaused = true
+  }
   
   //changer de piste
   changeTrack(trackId: string) {    
@@ -39,14 +47,6 @@ export class JukeboxPage implements OnInit{
     this.index = this.audioLinks.findIndex(item => item.id === trackId);
     this.nameCurrentTrack = this.audioLinks[this.index].titre
     this.isPaused = false
-  }
-
-  ngOnInit() {
-    this.startTimeInterval()
-    setInterval(() => {
-      this.updateProgress();
-    }, 1000);
-    this.isPaused = true
   }
 
   startTimeInterval() {

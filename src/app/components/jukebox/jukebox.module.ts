@@ -7,16 +7,22 @@ import { IonicModule } from '@ionic/angular';
 import { JukeboxPageRoutingModule } from './jukebox-routing.module';
 
 import { JukeboxPage } from './jukebox.page';
-import { YouTubePlayerModule } from '@angular/youtube-player';
+import { YouTubePlayer,YOUTUBE_PLAYER_CONFIG } from '@angular/youtube-player';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    YouTubePlayerModule,
+    YouTubePlayer,
     JukeboxPageRoutingModule
   ],
-  declarations: [JukeboxPage]
+  declarations: [JukeboxPage],
+  providers: [{
+    provide: YOUTUBE_PLAYER_CONFIG,
+    useValue: {
+      disablePlaceholder: true
+    }
+  }]
 })
 export class JukeboxPageModule {}
